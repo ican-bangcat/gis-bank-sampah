@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peta Bank Sampah Pekanbaru</title>
+
+  <!-- Bootstrap & Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+  <!-- OpenLayers CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol/ol.css">
+
+  <style>
+    :root {
+      --primary-green: #2d7a3e;
+      --light-green: #4caf50;
+      --dark-green: #1b5e20;
+      --bg-light: #f1f8f4;
+      --glass-bg: rgba(255, 255, 255, 0.95);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg-light);
+      overflow: hidden;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      padding: 0.6rem 1rem;
+      position: relative;
+      z-index: 1001;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: white !important;
+    }
+
+    .nav-link {
+      color: rgba(255,255,255,0.9) !important;
+      font-weight: 500;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: white !important;
+    }
+
+    /* Map Container */
+    #map {
+      width: 100%;
+      height: calc(100vh - 56px);
+      position: relative;
+    }
+
+    /* ========================================
+       CONTROL PANELS
+    ======================================== */
+    
+    .control-panel {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      z-index: 1000;
+      width: 320px;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+    }
+
+    .control-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 1rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 10px;
+    }
+
+    .control-card h5 {
+      color: var(--primary-green);
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 2px solid #e8f5e9;
+      padding-bottom: 0.5rem;
+    }
+
+    .control-card h6 {
+      color: #555;
+      font-weight: 600;
+      margin: 0.8rem 0 0.5rem 0;
+      font-size: 0.85rem;
+    }
+
+    /* Form Controls */
+    .form-check {
+      padding: 0.4rem 0.6rem;
+      margin-bottom: 0.3rem;
+      background: rgba(45, 122, 62, 0.03);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .form-check:hover {
+      background: rgba(45, 122, 62, 0.08);
+    }
+
+    .form-check-input:checked {
+      background-color: var(--primary-green);
+      border-color: var(--primary-green);
+    }
+
+    .form-check-label {
+      font-weight: 500;
+      color: #444;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    /* Analysis Layer Styling */
+    .analysis-layer {
+      background: linear-gradient(135deg, #fff, #f8f9fa);
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 0.8rem;
+      margin-bottom: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .analysis-layer:hover {
+      border-color: var(--light-green);
+    }
+
+    .analysis-layer.active {
+      border-color: var(--primary-green);
+      background: linear-gradient(135deg, #e8f5e9, #f1f8f4);
+    }
+
+    .analysis-layer .form-check-label {
+      font-weight: 600;
+      color: var(--primary-green);
+    }
+
+    .analysis-layer .layer-desc {
+      font-size: 0.75rem;
+      color: #666;
+      margin-top: 0.3rem;
+      padding-left: 1.5rem;
+    }
+
+    /* Filter Sections */
+    .filter-section {
+      display: none;
+      margin-top: 0.8rem;
+      padding: 0.8rem;
+      background: #f8f9fa;
+      border-radius: 10px;
+      border-left: 4px solid var(--light-green);
+    }
+
+    .filter-section.show {
+      display: block;
+    }
+
+    .filter-section h6 {
+      margin-top: 0;
+      color: var(--primary-green);
+      font-size: 0.8rem;
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.3rem;
+    }
+
+    .filter-grid .form-check {
+      margin: 0;
+      padding: 0.3rem 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    /* Slider Styling */
+    .slider-container {
+      margin-top: 0.5rem;
+    }
+
+    .slider-container label {
+      font-size: 0.8rem;
+      color: #555;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .form-range {
+      width: 100%;
+      height: 6px;
+    }
+
+    .form-range::-webkit-slider-thumb {
+      background: var(--primary-green);
+    }
+
+    .slider-value {
+      text-align: center;
+      font-weight: 600;
+      color: var(--primary-green);
+      font-size: 0.85rem;
+      margin-top: 0.3rem;
+    }
+
+    /* Legend */
+    .legend {
+      margin-top: 0.8rem;
+      padding: 0.6rem;
+      background: white;
+      border-radius: 8px;
+    }
+
+    .legend h6 {
+      margin: 0 0 0.5rem 0;
+      font-size: 0.75rem;
+      color: #666;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+      font-size: 0.75rem;
+    }
+
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      flex-shrink: 0;
+    }
+
+    /* Info Box */
+    #info {
+      background: linear-gradient(135deg, #e8f5e9, #f1f8f4);
+      border-radius: 10px;
+      padding: 0.6rem;
+      font-size: 0.8rem;
+      border-left: 4px solid var(--light-green);
+      margin-top: 0.8rem;
+    }
+
+    /* ========================================
+       ZOOM & BASEMAP CONTROLS
+    ======================================== */
+    
+    .zoom-control {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      z-index: 1000;
+    }
+
+    .zoom-btn-group {
+      background: var(--glass-bg);
+      border-radius: 12px;
+      padding: 0.4rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .zoom-btn {
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: white;
+      border-radius: 8px;
+      font-size: 1rem;
+      color: var(--primary-green);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .zoom-btn:hover {
+      background: var(--primary-green);
+      color: white;
+    }
+
+    .basemap-control {
+      position: absolute;
+      bottom: 25px;
+      left: 15px;
+      z-index: 1000;
+    }
+
+    .basemap-card {
+      background: var(--glass-bg);
+      border-radius: 12px;
+      padding: 0.8rem;
+      box-shadow: var(--shadow);
+    }
+
+    .basemap-card h6 {
+      color: var(--primary-green);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    #basemap-switcher {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+    }
+
+    .basemap-btn {
+      padding: 0.4rem;
+      border: 2px solid #e0e0e0;
+      background: white;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .basemap-btn:hover {
+      border-color: var(--light-green);
+    }
+
+    .basemap-btn.active {
+      background: var(--primary-green);
+      color: white;
+      border-color: var(--primary-green);
+    }
+
+    /* ========================================
+       POPUP STYLING
+    ======================================== */
+    
+    .ol-popup {
+      position: absolute;
+      background: white;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+      padding: 0;
+      border-radius: 16px;
+      border: none;
+      bottom: 15px;
+      left: -150px;
+      min-width: 300px;
+      max-width: 350px;
+      overflow: hidden;
+    }
+
+    .ol-popup::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 150px;
+      border-width: 10px;
+      border-style: solid;
+      border-color: white transparent transparent transparent;
+    }
+
+    .ol-popup-closer {
+      text-decoration: none;
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      font-size: 1.1rem;
+      color: #999;
+      cursor: pointer;
+    }
+
+    .ol-popup-closer:hover {
+      color: #e74c3c;
+    }
+
+    .ol-popup-closer::after {
+      content: "✕";
+    }
+
+    #popup-content .popup-content {
+      padding: 1rem;
+    }
+
+    #popup-content h3 {
+      color: var(--primary-green);
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid #e8f5e9;
+    }
+
+    #popup-content .popup-info p {
+      margin: 0.4rem 0;
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    #popup-content .popup-jenis {
+      margin-top: 0.8rem;
+      padding: 0.6rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+      font-size: 0.8rem;
+    }
+
+    .popup-analysis {
+      margin-bottom: 0.8rem;
+    }
+
+    .analysis-badge {
+      display: inline-block;
+      padding: 0.5rem 0.8rem;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    .analysis-badge small {
+      font-weight: 400;
+      opacity: 0.9;
+    }
+
+    /* Hide default OL controls */
+    .ol-zoom { display: none; }
+
+    /* Scrollbar */
+    .control-panel::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .control-panel::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .control-panel::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 3px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .control-panel {
+        width: 280px;
+        right: 10px;
+        max-height: 60vh;
+      }
+
+      .basemap-control {
+        left: 10px;
+        bottom: 15px;
+      }
+
+      #basemap-switcher {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid px-3">
+    <a class="navbar-brand" href="index.html">
+      <i class="fas fa-recycle me-2"></i>GIS Bank Sampah
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="map.html"><i class="fas fa-map me-1"></i> Peta</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Map -->
+<div id="map">
+  
+  <!-- Popup -->
+  <div id="popup" class="ol-popup">
+    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+    <div id="popup-content"></div>
+  </div>
+
+  <!-- Control Panel - Kanan -->
+  <div class="control-panel">
+    
+    <!-- Layer Dasar -->
+    <div class="control-card">
+      <h5><i class="fas fa-layer-group"></i> Layer Dasar</h5>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="polygon" checked>
+        <label class="form-check-label" for="polygon">
+          <i class="fas fa-draw-polygon me-1" style="color: var(--primary-green);"></i>
+          Batas Provinsi Riau
+        </label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="point" checked>
+        <label class="form-check-label" for="point">
+          <i class="fas fa-map-marker-alt me-1" style="color: #e74c3c;"></i>
+          Titik Bank Sampah
+        </label>
+      </div>
+    </div>
+
+    <!-- Layer Analisis -->
+    <div class="control-card">
+      <h5><i class="fas fa-chart-pie"></i> Layer Analisis</h5>
+
+      <!-- Layer 1: Indeks Diversifikasi -->
+      <div class="analysis-layer" id="layer1-container">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="layer-diversifikasi">
+          <label class="form-check-label" for="layer-diversifikasi">
+            🎨 Indeks Diversifikasi
+          </label>
+        </div>
+        <div class="layer-desc">Layanan lengkap vs terbatas (warna-warni)</div>
+        
+        <div class="filter-section" id="filter-diversifikasi">
+          <h6><i class="fas fa-filter me-1"></i> Filter Jenis Sampah</h6>
+          <p style="font-size: 0.7rem; color: #888; margin-bottom: 0.5rem;">Tampilkan bank sampah yang menerima:</p>
+          <div class="filter-grid">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="filter-kertas" checked>
+              <label class="form-check-label" for="filter-kertas">📄 Kertas</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="filter-plastik" checked>
+              <label class="form-check-label" for="filter-plastik">🥤 Plastik</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="filter-besi" checked>
+              <label class="form-check-label" for="filter-besi">🔩 Besi</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="filter-kaca" checked>
+              <label class="form-check-label" for="filter-kaca">🪟 Kaca</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="filter-logam" checked>
+              <label class="form-check-label" for="filter-logam">⚙️ Logam</label>
+            </div>
+          </div>
+          
+          <div class="legend">
+            <h6>Legenda Indeks Diversifikasi:</h6>
+            <div class="legend-item">
+              <span class="legend-color" style="background: #e74c3c;"></span>
+              <span>1 jenis - Sangat Terbatas</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background: #e67e22;"></span>
+              <span>2 jenis - Terbatas</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background: #f1c40f;"></span>
+              <span>3 jenis - Sedang</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background: #27ae60;"></span>
+              <span>4 jenis - Lengkap</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background: #1abc9c;"></span>
+              <span>5 jenis - Sangat Lengkap</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layer 2: Rasio Produktivitas -->
+      <div class="analysis-layer" id="layer2-container">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="layer-produktivitas">
+          <label class="form-check-label" for="layer-produktivitas">
+            📊 Rasio Produktivitas
+          </label>
+        </div>
+        <div class="layer-desc">Nasabah aktif vs pasif (ukuran titik)</div>
+        
+        <div class="filter-section" id="filter-produktivitas">
+          <h6><i class="fas fa-sliders-h me-1"></i> Filter Volume Sampah</h6>
+          <div class="slider-container">
+            <label>Tampilkan bank sampah dengan volume maksimal:</label>
+            <input type="range" class="form-range" id="volume-slider" min="0" max="8000" value="8000">
+            <div class="slider-value" id="volume-value">0 - 8,000 kg</div>
+          </div>
+          
+          <div class="legend">
+            <h6>Legenda Produktivitas (kg/anggota/minggu):</h6>
+            <div class="legend-item">
+              <span class="legend-color" style="background: #e74c3c; width: 12px; height: 12px;"></span>
+              <span>&lt; 50 - Rendah</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background: #f39c12; width: 16px; height: 16px;"></span>
+              <span>50 - 100 - Sedang</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background: #27ae60; width: 20px; height: 20px;"></span>
+              <span>100 - 200 - Tinggi</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background: #9b59b6; width: 24px; height: 24px;"></span>
+              <span>&gt; 200 - Sangat Tinggi</span>
+            </div>
+            <p style="font-size: 0.65rem; color: #888; margin-top: 0.5rem; margin-bottom: 0;">
+              * Ukuran titik menunjukkan tingkat produktivitas
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layer 3: Zona Jangkauan -->
+      <div class="analysis-layer" id="layer3-container">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="layer-zona">
+          <label class="form-check-label" for="layer-zona">
+            🎯 Zona Jangkauan
+          </label>
+        </div>
+        <div class="layer-desc">Area terlayani berdasarkan volume (radius)</div>
+        
+        <div class="filter-section" id="filter-zona">
+          <h6><i class="fas fa-expand-arrows-alt me-1"></i> Atur Skala Radius</h6>
+          <div class="slider-container">
+            <label>Multiplier radius (meter per kg volume):</label>
+            <input type="range" class="form-range" id="radius-slider" min="0.5" max="5" value="2" step="0.5">
+            <div class="slider-value" id="radius-value">2 m/kg</div>
+          </div>
+          
+          <div class="legend">
+            <h6>Keterangan:</h6>
+            <div class="legend-item">
+              <span class="legend-color" style="background: rgba(52, 152, 219, 0.3); border: 2px dashed #3498db;"></span>
+              <span>Area Terjangkau</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background: #3498db;"></span>
+              <span>Lokasi Bank Sampah</span>
+            </div>
+            <div style="margin-top: 0.5rem; padding: 0.5rem; background: #fff3cd; border-radius: 6px;">
+              <small style="color: #856404;">
+                💡 <strong>Radius dinamis:</strong> Semakin besar volume sampah yang diolah, semakin besar radius jangkauannya.
+                <br>Area tanpa lingkaran = Blank Spot
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info Box -->
+    <div class="control-card">
+      <div id="info">
+        <i class="fas fa-info-circle me-1" style="color: var(--light-green);"></i>
+        Pilih layer analisis untuk melihat visualisasi data. Klik titik untuk detail.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Zoom Controls -->
+  <div class="zoom-control">
+    <div class="zoom-btn-group">
+      <button class="zoom-btn" id="zoom-in" title="Zoom In">
+        <i class="fas fa-plus"></i>
+      </button>
+      <button class="zoom-btn" id="zoom-out" title="Zoom Out">
+        <i class="fas fa-minus"></i>
+      </button>
+      <button class="zoom-btn" id="reset-view" title="Reset View">
+        <i class="fas fa-crosshairs"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Basemap Switcher -->
+  <div class="basemap-control">
+    <div class="basemap-card">
+      <h6><i class="fas fa-globe-asia me-1"></i> Basemap</h6>
+      <div id="basemap-switcher"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- OpenLayers & Main JS -->
+<script type="module" src="./main.js"></script>
+
+</body>
+</html>
