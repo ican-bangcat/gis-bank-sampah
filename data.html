@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Directory - Bank Sampah Pekanbaru</title>
+    <link rel="icon" type="image/png" href="icon/sampah.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #2d7a3e;
+            --light-green: #4caf50;
+            --dark-green: #1b5e20;
+            --bg-light: #f1f8f4;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-light) 0%, #e8f5e9 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+
+        .page-header {
+            background: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .page-title {
+            color: var(--primary-green);
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+        .filter-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--light-green);
+            box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .btn-reset {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-reset:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+        }
+
+        .data-table-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table thead th {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+            color: white;
+            font-weight: 600;
+            border: none;
+            padding: 1rem;
+        }
+
+        .table tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        .table tbody tr:hover {
+            background-color: var(--bg-light);
+            transform: scale(1.01);
+        }
+
+        .badge-jenis {
+            display: inline-block;
+            padding: 0.35rem 0.65rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 6px;
+            margin: 0.1rem;
+        }
+
+        .badge-kertas { background: #3498db; color: white; }
+        .badge-plastik { background: #e74c3c; color: white; }
+        .badge-besi { background: #95a5a6; color: white; }
+        .badge-kaca { background: #1abc9c; color: white; }
+        .badge-logam { background: #f39c12; color: white; }
+
+        .btn-map {
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--primary-green) 100%);
+            color: white;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-map:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+            color: white;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--primary-green);
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-box {
+            flex: 1;
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--primary-green) 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <i class="fas fa-recycle me-2"></i> GIS Bank Sampah
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-home me-1"></i> Home
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="data.html">
+                        <i class="fas fa-table me-1"></i> Direktori Data
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="map.html">
+                        <i class="fas fa-map-marked-alt me-1"></i> Peta Interaktif
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">
+                <i class="fas fa-database"></i> Data Directory Bank Sampah
+            </h1>
+            <p class="text-muted">Cari dan filter bank sampah berdasarkan lokasi dan jenis layanan</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container pb-5">
+        <!-- Statistics -->
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="stat-number" id="stat-total">0</div>
+                <div class="stat-label">Total Bank Sampah</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="stat-filtered">0</div>
+                <div class="stat-label">Hasil Filter</div>
+            </div>
+        </div>
+
+        <!-- Filter Card -->
+        <div class="filter-card">
+            <h5 class="mb-4"><i class="fas fa-filter"></i> Filter & Pencarian</h5>
+            
+            <div class="row g-3">
+                <!-- Search Box -->
+                <div class="col-md-6">
+                    <label class="filter-label">
+                        <i class="fas fa-search"></i> Cari Nama Bank Sampah
+                    </label>
+                    <input type="text" class="form-control" id="search-box" placeholder="Ketik nama bank sampah...">
+                </div>
+
+                <!-- Kecamatan Filter -->
+                <div class="col-md-6">
+                    <label class="filter-label">
+                        <i class="fas fa-map-marker-alt"></i> Filter Kecamatan
+                    </label>
+                    <select class="form-select" id="kecamatan-filter">
+                        <option value="">Semua Kecamatan</option>
+                    </select>
+                </div>
+
+                <!-- Jenis Sampah Filter -->
+                <div class="col-12">
+                    <label class="filter-label">
+                        <i class="fas fa-recycle"></i> Filter Jenis Sampah yang Diterima
+                    </label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="filter-kertas" value="Kertas" checked>
+                            <label for="filter-kertas">📄 Kertas</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="filter-plastik" value="Plastik" checked>
+                            <label for="filter-plastik">🥤 Plastik</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="filter-besi" value="Besi" checked>
+                            <label for="filter-besi">🔩 Besi</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="filter-kaca" value="Kaca" checked>
+                            <label for="filter-kaca">🪟 Kaca</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="filter-logam" value="Logam" checked>
+                            <label for="filter-logam">⚙️ Logam</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reset Button -->
+                <div class="col-12 text-end">
+                    <button class="btn-reset" id="btn-reset">
+                        <i class="fas fa-redo"></i> Reset Filter
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="data-table-card">
+            <div id="loading" class="loading">
+                <i class="fas fa-spinner fa-spin fa-3x"></i>
+                <p class="mt-3">Memuat data...</p>
+            </div>
+
+            <div id="table-container" style="display: none;">
+                <!-- Tambahkan SEBELUM <div class="table-responsive"> -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <div>
+    <label class="filter-label mb-0" style="display: inline;">
+      Tampilkan:
+    </label>
+    <select class="form-select d-inline-block" id="entries-per-page" style="width: auto; margin-left: 0.5rem;">
+      <option value="10">10 data</option>
+      <option value="20">20 data</option>
+      <option value="50">50 data</option>
+      <option value="100">100 data</option>
+      <option value="-1">Semua data</option>
+    </select>
+  </div>
+  <div id="pagination-info" style="font-size: 0.9rem; color: #666;">
+    Menampilkan <strong id="showing-start">0</strong> - <strong id="showing-end">0</strong> dari <strong id="showing-total">0</strong> data
+  </div>
+</div>
+
+<div class="table-responsive">
+  <!-- Tabel Anda di sini -->
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;">No</th>
+                                <th>Nama Bank Sampah</th>
+                                <th>Kecamatan</th>
+                                <th>Jenis Diterima</th>
+                                <th style="width: 120px;">Volume (kg)</th>
+                                <th style="width: 100px;">Anggota</th>
+                                <th style="width: 150px;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="data-tbody">
+                            <!-- Data will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="no-data" class="no-data" style="display: none;">
+                    <i class="fas fa-inbox fa-3x mb-3" style="color: #ccc;"></i>
+                    <p>Tidak ada data yang sesuai dengan filter</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="./data.js"></script>
+</body>
+</html>

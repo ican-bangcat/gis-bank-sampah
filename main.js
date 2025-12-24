@@ -23,9 +23,9 @@ import { createClient } from "@supabase/supabase-js";
 // =====================================================
 // SUPABASE CONFIGURATION
 // =====================================================
-const SUPABASE_URL = "https://mekbftnxhxuwxkdclrkq.supabase.co"; // Ganti dengan URL Supabase Anda
+const SUPABASE_URL = "https://mekbftnxhxuwxkdclrkq.supabase.co";
 const SUPABASE_ANON_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1la2JmdG54aHh1d3hrZGNscmtxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY0NTUzMjUsImV4cCI6MjA4MjAzMTMyNX0.9k4GZLLJQ5Y06Q5NAAhiegmCBZDZs0LhlhNo5ovEsRE"; // Ganti dengan Anon Key Anda
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1la2JmdG54aHh1d3hrZGNscmtxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY0NTUzMjUsImV4cCI6MjA4MjAzMTMyNX0.9k4GZLLJQ5Y06Q5NAAhiegmCBZDZs0LhlhNo5ovEsRE";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -116,72 +116,63 @@ const basemaps = [
 const bankSampahSource = new VectorSource();
 
 // Function to fetch data from Supabase and convert to GeoJSON features
-// Ganti fungsi loadBankSampahFromSupabase yang lama dengan ini:
-
 async function loadBankSampahFromSupabase() {
   try {
-    // Pastikan nama tabel benar (huruf kecil/besar sesuai di Supabase)
     const { data, error } = await supabase.from("BankSampah").select("*");
 
     if (error) {
       console.error("❌ Error ambil data:", error.message);
       return;
     }
-    
-    // Log untuk memastikan data masuk
+
     console.log("✅ Data Raw dari Supabase:", data);
 
-    const features = data.map((item) => {
-      // 1. PERBAIKAN FATAL: TUKAR LATITUDE & LONGITUDE
-      // Di data kamu: kolom 'latitude' isinya 101 (itu Longitude), kolom 'longitude' isinya 0.5 (itu Latitude)
-      // Jadi kita balik saat mengambilnya:
-      
-      const lon = parseFloat(item.latitude);   // Ambil 101... sebagai Longitude
-      const lat = parseFloat(item.longitude);  // Ambil 0.5... sebagai Latitude
+    const features = data
+      .map((item) => {
+        // ✅ PERBAIKAN: JANGAN SWAP! Ambil langsung sesuai nama kolom
+        const lat = parseFloat(item.latitude);    // 0.58... ✅
+        const lon = parseFloat(item.longitude);   // 101.42... ✅
 
-      // Cek apakah koordinat valid
-      if (isNaN(lon) || isNaN(lat)) return null;
+        if (isNaN(lon) || isNaN(lat)) return null;
 
-      // 2. PERBAIKAN TIPE DATA (String -> Number)
-      // Kolom Besi, Kaca, dll di console terlihat pakai kutip "0", harus jadi angka biar filter jalan.
-      
-      const feature = new Feature({
-        geometry: new Point(fromLonLat([lon, lat])), // Urutan wajib: [Longitude, Latitude]
-        
-        // Properties
-        Nama: item.Nama || item.nama_bank_sampah,
-        Kecamatan: item.Kecamatan,
-        
-        // Pakai parseInt untuk memastikan "0" (string) jadi 0 (angka)
-        Kertas: parseInt(item.Kertas || 0),
-        Plastik: parseInt(item.Plastik || 0),
-        Besi: parseInt(item.Besi || 0),
-        Kaca: parseInt(item.Kaca || 0),
-        Logam: parseInt(item.Logam || 0),
-        
-        // Pastikan Volume float
-        Volume_Sampah_kg_per_minggu: parseFloat(item["Volume Sampah (per minggu/kg)"] || item.volume || 0),
-        Jumlah_Anggota: parseInt(item.Jumlah_Anggota || 0),
-      });
-      return feature;
-    }).filter(f => f !== null);
+        const feature = new Feature({
+          geometry: new Point(fromLonLat([lon, lat])), // Urutan: [Longitude, Latitude] ✅
 
-    // Hapus data lama (jika ada) dan masukkan yang baru
+          // Properties
+          Nama: item.Nama || item.nama_bank_sampah,
+          Kecamatan: item.Kecamatan,
+
+          Kertas: parseInt(item.Kertas || 0),
+          Plastik: parseInt(item.Plastik || 0),
+          Besi: parseInt(item.Besi || 0),
+          Kaca: parseInt(item.Kaca || 0),
+          Logam: parseInt(item.Logam || 0),
+
+          Volume_Sampah_kg_per_minggu: parseFloat(
+            item["Volume Sampah (per minggu/kg)"] || item.volume || 0
+          ),
+          Jumlah_Anggota: parseInt(item.Jumlah_Anggota || 0),
+        });
+        return feature;
+      })
+      .filter((f) => f !== null);
+
     bankSampahSource.clear();
     bankSampahSource.addFeatures(features);
 
-    // Update logika visualisasi lain
     generateZonaJangkauan();
     updateVolumeSliderMax();
 
-    console.log(`🗺️ Berhasil plot ${features.length} titik dengan koordinat yang sudah ditukar.`);
-    
+    console.log(`🗺️ Berhasil plot ${features.length} titik dengan koordinat BENAR.`);
+
+    // Panggil handler URL setelah data loaded
+    handleURLParameters();
   } catch (err) {
     console.error("Error loading:", err);
   }
 }
 
-// Update volume slider max value based on loaded data
+// Update volume slider max value
 function updateVolumeSliderMax() {
   let maxVol = 0;
   const features = bankSampahSource.getFeatures();
@@ -217,8 +208,7 @@ const riau = new VectorLayer({
 });
 
 // =====================================================
-// LAYER 1: Indeks Diversifikasi (Titik Warna-warni)
-// Semakin banyak jenis sampah = warna semakin hijau
+// LAYER 1: Indeks Diversifikasi
 // =====================================================
 
 const diversityColors = {
@@ -314,15 +304,10 @@ function getProduktivitas(feature) {
 }
 
 function getProduktivitasCategory(produktivitas) {
-  if (produktivitas < 50) {
-    return { label: "Rendah", color: "#e74c3c" };
-  } else if (produktivitas < 100) {
-    return { label: "Sedang", color: "#f39c12" };
-  } else if (produktivitas < 200) {
-    return { label: "Tinggi", color: "#27ae60" };
-  } else {
-    return { label: "Sangat Tinggi", color: "#9b59b6" };
-  }
+  if (produktivitas < 50) return { label: "Rendah", color: "#e74c3c" };
+  else if (produktivitas < 100) return { label: "Sedang", color: "#f39c12" };
+  else if (produktivitas < 200) return { label: "Tinggi", color: "#27ae60" };
+  else return { label: "Sangat Tinggi", color: "#9b59b6" };
 }
 
 let volumeFilterMin = 0;
@@ -334,14 +319,11 @@ const layerProduktivitas = new VectorLayer({
   style: (feature) => {
     const nama = feature.get("Nama");
     if (!nama) return null;
-
     const volume = parseFloat(feature.get("Volume_Sampah_kg_per_minggu")) || 0;
-
     if (volume < volumeFilterMin || volume > volumeFilterMax) return null;
 
     const produktivitas = getProduktivitas(feature);
     const category = getProduktivitasCategory(produktivitas);
-
     const logProd = Math.log10(produktivitas + 1);
     const normalizedSize = Math.max(10, Math.min(30, 10 + logProd * 6));
 
@@ -378,7 +360,6 @@ const layerTitikZona = new VectorLayer({
   style: (feature) => {
     const nama = feature.get("Nama");
     if (!nama) return null;
-
     return new Style({
       image: new CircleStyle({
         radius: 8,
@@ -399,26 +380,22 @@ function calculateRadius(volume) {
 
 function generateZonaJangkauan() {
   zonaJangkauanSource.clear();
-
   const features = bankSampahSource.getFeatures();
   features.forEach((feature) => {
     const nama = feature.get("Nama");
     if (!nama) return;
-
     const geom = feature.getGeometry();
     if (geom && geom.getType() === "Point") {
       const center = geom.getCoordinates();
       const volume =
         parseFloat(feature.get("Volume_Sampah_kg_per_minggu")) || 0;
       const radius = calculateRadius(volume);
-
       const circle = new Feature({
         geometry: new CircleGeom(center, radius),
         nama: nama,
         volume: volume,
         radius: radius,
       });
-
       zonaJangkauanSource.addFeature(circle);
     }
   });
@@ -434,12 +411,9 @@ const bankSampah = new VectorLayer({
   style: (feature) => {
     const nama = feature.get("Nama");
     if (!nama) return null;
-
     return new Style({
       image: new Icon({
         anchor: [0.5, 0.5],
-        anchorXUnits: "fraction",
-        anchorYUnits: "fraction",
         src: "icon/sampah.png",
         scale: 0.05,
       }),
@@ -501,11 +475,9 @@ function createBasemapSwitcher() {
         .forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
     });
-
     basemapContainer.appendChild(btn);
   });
 }
-
 createBasemapSwitcher();
 
 // =====================================================
@@ -514,12 +486,18 @@ createBasemapSwitcher();
 
 map.on("singleclick", function (evt) {
   const feature = map.forEachFeatureAtPixel(evt.pixel, (f) => f);
-
   if (!feature) {
     overlay.setPosition(undefined);
     return;
   }
 
+  // Panggil helper function untuk generate content popup
+  // Kita buatkan helper agar bisa dipanggil juga dari fitur "Show on Map"
+  displayPopup(feature, evt.coordinate);
+});
+
+// Helper untuk menampilkan isi popup (biar kodingan rapi)
+function displayPopup(feature, coordinate) {
   const nama = feature.get("Nama") || feature.get("nama");
   if (!nama) return;
 
@@ -535,8 +513,7 @@ map.on("singleclick", function (evt) {
           🎨 Indeks Diversifikasi: ${diversityIndex}/5
           <br><small>${getDiversityLabel(diversityIndex)}</small>
         </span>
-      </div>
-    `;
+      </div>`;
   }
 
   if (layerProduktivitas.getVisible()) {
@@ -548,8 +525,7 @@ map.on("singleclick", function (evt) {
           📊 Produktivitas: ${produktivitas.toFixed(0)} kg/anggota/minggu
           <br><small>${category.label}</small>
         </span>
-      </div>
-    `;
+      </div>`;
   }
 
   if (layerZonaJangkauan.getVisible()) {
@@ -559,12 +535,9 @@ map.on("singleclick", function (evt) {
       <div class="popup-analysis">
         <span class="analysis-badge" style="background: #3498db">
           🎯 Zona Jangkauan
-          <br><small>Radius: ${(radius / 1000).toFixed(
-            1
-          )} km (berdasarkan volume ${volume.toLocaleString()} kg)</small>
+          <br><small>Radius: ${(radius / 1000).toFixed(1)} km</small>
         </span>
-      </div>
-    `;
+      </div>`;
   }
 
   const kecamatan = feature.get("Kecamatan") || "N/A";
@@ -598,8 +571,8 @@ map.on("singleclick", function (evt) {
     </div>
   `;
 
-  overlay.setPosition(evt.coordinate);
-});
+  overlay.setPosition(coordinate);
+}
 
 closer.onclick = function () {
   overlay.setPosition(undefined);
@@ -735,47 +708,115 @@ if (radiusSlider) {
 }
 
 // =====================================================
-// HOVER EFFECT
+// HOVER EFFECT & ZOOM CONTROLS
 // =====================================================
 
 map.on("pointermove", function (evt) {
   const feature = map.forEachFeatureAtPixel(evt.pixel, (f) => f);
-
-  if (feature) {
-    map.getTargetElement().style.cursor = "pointer";
-  } else {
-    map.getTargetElement().style.cursor = "";
-  }
+  map.getTargetElement().style.cursor = feature ? "pointer" : "";
 });
-
-// =====================================================
-// ZOOM CONTROLS
-// =====================================================
 
 const zoomInBtn = document.getElementById("zoom-in");
 const zoomOutBtn = document.getElementById("zoom-out");
 const resetViewBtn = document.getElementById("reset-view");
 
-if (zoomInBtn) {
-  zoomInBtn.addEventListener("click", () => {
-    const view = map.getView();
-    view.animate({ zoom: view.getZoom() + 1, duration: 300 });
-  });
+if (zoomInBtn)
+  zoomInBtn.addEventListener("click", () =>
+    map.getView().animate({ zoom: map.getView().getZoom() + 1, duration: 300 })
+  );
+if (zoomOutBtn)
+  zoomOutBtn.addEventListener("click", () =>
+    map.getView().animate({ zoom: map.getView().getZoom() - 1, duration: 300 })
+  );
+if (resetViewBtn)
+  resetViewBtn.addEventListener("click", () =>
+    map
+      .getView()
+      .animate({ center: fromLonLat([101.42, 0.5]), zoom: 12, duration: 500 })
+  );
+
+// =====================================================
+// URL PARAMETER HANDLER (FITUR BARU)
+// =====================================================
+
+/**
+ * 1. Fungsi untuk membaca parameter lat, lng, zoom, name dari URL
+ */
+function getURLParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    lat: params.get("lat"),
+    lng: params.get("lng"),
+    zoom: params.get("zoom"),
+    name: params.get("name"),
+  };
 }
 
-if (zoomOutBtn) {
-  zoomOutBtn.addEventListener("click", () => {
-    const view = map.getView();
-    view.animate({ zoom: view.getZoom() - 1, duration: 300 });
+/**
+ * 2. Fungsi untuk menampilkan popup berdasarkan koordinat (Triggered by URL)
+ */
+function showPopupAtCoordinate(lat, lng, name) {
+  const features = bankSampahSource.getFeatures();
+  let targetFeature = null;
+  const targetLat = parseFloat(lat);
+  const targetLng = parseFloat(lng);
+
+  // Loop semua fitur untuk mencari yang koordinatnya cocok
+  features.forEach((feature) => {
+    const geom = feature.getGeometry();
+    if (geom && geom.getType() === "Point") {
+      const coords = geom.getCoordinates();
+      // Konversi target lat/lng ke proyeksi peta (EPSG:3857) agar bisa dibandingkan
+      const [targetProjLng, targetProjLat] = fromLonLat([targetLng, targetLat]);
+
+      // Cek jarak/kesamaan (gunakan toleransi kecil karena float)
+      if (
+        Math.abs(coords[0] - targetProjLng) < 1 &&
+        Math.abs(coords[1] - targetProjLat) < 1
+      ) {
+        targetFeature = feature;
+      }
+    }
   });
+
+  if (targetFeature) {
+    // Gunakan fungsi displayPopup yang sudah kita buat tadi
+    // Kita perlu koordinat dalam proyeksi peta untuk posisi popup
+    const popupCoord = fromLonLat([targetLng, targetLat]);
+    displayPopup(targetFeature, popupCoord);
+
+    console.log(`📍 Popup ditampilkan untuk: ${name}`);
+  } else {
+    console.warn("Feature tidak ditemukan di koordinat:", lat, lng);
+  }
 }
 
-if (resetViewBtn) {
-  resetViewBtn.addEventListener("click", () => {
-    map.getView().animate({
-      center: fromLonLat([101.42, 0.5]),
-      zoom: 12,
-      duration: 500,
-    });
-  });
+/**
+ * 3. Handler Utama: Cek URL -> Animasi Zoom -> Tampilkan Popup
+ */
+function handleURLParameters() {
+  const urlParams = getURLParams();
+
+  if (urlParams.lat && urlParams.lng) {
+    const lat = parseFloat(urlParams.lat);
+    const lng = parseFloat(urlParams.lng);
+    const zoom = urlParams.zoom ? parseInt(urlParams.zoom) : 18; // Default zoom tinggi
+    const name = urlParams.name ? decodeURIComponent(urlParams.name) : null;
+
+    if (!isNaN(lat) && !isNaN(lng)) {
+      console.log(`🎯 URL Command Detected: Go to ${name} (${lat}, ${lng})`);
+
+      // 1. Terbang ke lokasi
+      map.getView().animate({
+        center: fromLonLat([lng, lat]),
+        zoom: zoom,
+        duration: 1500, // Durasi terbang
+      });
+
+      // 2. Tunggu animasi selesai dikit, lalu munculkan popup
+      setTimeout(() => {
+        showPopupAtCoordinate(lat, lng, name);
+      }, 1600);
+    }
+  }
 }
