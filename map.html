@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Peta Bank Sampah Pekanbaru</title>
 
-  <!-- Bootstrap & Font Awesome -->
+  <!-- Bootstrap & Font Awesome 6.7.2 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
 
   <!-- OpenLayers CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol/ol.css">
@@ -265,6 +265,12 @@
       margin-top: 0.8rem;
     }
 
+    /* Icon Styling untuk Label */
+    .label-icon {
+      font-size: 0.85rem;
+      margin-right: 0.3rem;
+    }
+
     /* ========================================
        ZOOM & BASEMAP CONTROLS
     ======================================== */
@@ -313,6 +319,7 @@
 
     .basemap-card {
       background: var(--glass-bg);
+      backdrop-filter: blur(10px);
       border-radius: 12px;
       padding: 0.8rem;
       box-shadow: var(--shadow);
@@ -321,34 +328,56 @@
     .basemap-card h6 {
       color: var(--primary-green);
       font-weight: 600;
-      margin-bottom: 0.5rem;
-      font-size: 0.8rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
     #basemap-switcher {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 5px;
+      gap: 6px;
     }
 
     .basemap-btn {
-      padding: 0.4rem;
+      padding: 0.5rem 0.4rem;
       border: 2px solid #e0e0e0;
       background: white;
       border-radius: 8px;
       font-size: 0.7rem;
       cursor: pointer;
       transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      font-weight: 500;
+    }
+
+    .basemap-btn i {
+      font-size: 1.2rem;
+      color: #555;
     }
 
     .basemap-btn:hover {
       border-color: var(--light-green);
+      transform: translateY(-2px);
+    }
+
+    .basemap-btn:hover i {
+      color: var(--primary-green);
     }
 
     .basemap-btn.active {
       background: var(--primary-green);
       color: white;
       border-color: var(--primary-green);
+    }
+
+    .basemap-btn.active i {
+      color: white;
     }
 
     /* ========================================
@@ -387,6 +416,7 @@
       font-size: 1.1rem;
       color: #999;
       cursor: pointer;
+      z-index: 10;
     }
 
     .ol-popup-closer:hover {
@@ -554,7 +584,7 @@
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="layer-diversifikasi">
           <label class="form-check-label" for="layer-diversifikasi">
-            🎨 Indeks Diversifikasi
+            <i class="fas fa-palette label-icon" style="color: #9b59b6;"></i>Indeks Diversifikasi
           </label>
         </div>
         <div class="layer-desc">Layanan lengkap vs terbatas (warna-warni)</div>
@@ -565,23 +595,33 @@
           <div class="filter-grid">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" id="filter-kertas" checked>
-              <label class="form-check-label" for="filter-kertas">📄 Kertas</label>
+              <label class="form-check-label" for="filter-kertas">
+                <i class="fas fa-newspaper label-icon" style="color: #8b4513;"></i>Kertas
+              </label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" id="filter-plastik" checked>
-              <label class="form-check-label" for="filter-plastik">🥤 Plastik</label>
+              <label class="form-check-label" for="filter-plastik">
+                <i class="fas fa-bottle-water label-icon" style="color: #3498db;"></i>Plastik
+              </label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" id="filter-besi" checked>
-              <label class="form-check-label" for="filter-besi">🔩 Besi</label>
+              <label class="form-check-label" for="filter-besi">
+                <i class="fas fa-wrench label-icon" style="color: #7f8c8d;"></i>Besi
+              </label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" id="filter-kaca" checked>
-              <label class="form-check-label" for="filter-kaca">🪟 Kaca</label>
+              <label class="form-check-label" for="filter-kaca">
+                <i class="fas fa-wine-bottle label-icon" style="color: #1abc9c;"></i>Kaca
+              </label>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" id="filter-logam" checked>
-              <label class="form-check-label" for="filter-logam">⚙️ Logam</label>
+              <label class="form-check-label" for="filter-logam">
+                <i class="fas fa-cog label-icon" style="color: #95a5a6;"></i>Logam
+              </label>
             </div>
           </div>
           
@@ -616,7 +656,7 @@
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="layer-produktivitas">
           <label class="form-check-label" for="layer-produktivitas">
-            📊 Rasio Produktivitas
+            <i class="fas fa-chart-line label-icon" style="color: #e67e22;"></i>Rasio Produktivitas
           </label>
         </div>
         <div class="layer-desc">Nasabah aktif vs pasif (ukuran titik)</div>
@@ -659,7 +699,7 @@
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="layer-zona">
           <label class="form-check-label" for="layer-zona">
-            🎯 Zona Jangkauan
+            <i class="fas fa-bullseye label-icon" style="color: #3498db;"></i>Zona Jangkauan
           </label>
         </div>
         <div class="layer-desc">Area terlayani berdasarkan volume (radius)</div>
@@ -684,7 +724,7 @@
             </div>
             <div style="margin-top: 0.5rem; padding: 0.5rem; background: #fff3cd; border-radius: 6px;">
               <small style="color: #856404;">
-                💡 <strong>Radius dinamis:</strong> Semakin besar volume sampah yang diolah, semakin besar radius jangkauannya.
+                <i class="fas fa-lightbulb" style="color: #f39c12;"></i> <strong>Radius dinamis:</strong> Semakin besar volume sampah yang diolah, semakin besar radius jangkauannya.
                 <br>Area tanpa lingkaran = Blank Spot
               </small>
             </div>
@@ -721,7 +761,8 @@
   <!-- Basemap Switcher -->
   <div class="basemap-control">
     <div class="basemap-card">
-      <h6><i class="fas fa-globe-asia me-1"></i> Basemap</h6>
+      <h6><i class="fas fa-globe me-1"></i> Basemap</h6>
+      <!-- Kosongkan div ini, biarkan JavaScript yang mengisi -->
       <div id="basemap-switcher"></div>
     </div>
   </div>

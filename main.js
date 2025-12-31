@@ -414,8 +414,8 @@ const bankSampah = new VectorLayer({
     return new Style({
       image: new Icon({
         anchor: [0.5, 0.5],
-        src: "icon/sampah.png",
-        scale: 0.05,
+        src: "icon/iconaaa.png",
+        scale: 0.3,
       }),
     });
   },
