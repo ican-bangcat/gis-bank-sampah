@@ -1,0 +1,2205 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.426768,
+          "0.581297"
+        ]
+      },
+      "properties": {
+        "No": 1,
+        "Nama": "Bank Sampah Unilak",
+        "Kecamatan": "Rumbai",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 2000,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.433331,
+          "0.56908"
+        ]
+      },
+      "properties": {
+        "No": 2,
+        "Nama": "Bank Pak david",
+        "Kecamatan": "Rumbai",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 100,
+        "Jumlah_Anggota": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.435591,
+          "0.561645"
+        ]
+      },
+      "properties": {
+        "No": 3,
+        "Nama": "Penampung Harmonis",
+        "Kecamatan": "Rumbai",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 50,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.409632,
+          "0.536983"
+        ]
+      },
+      "properties": {
+        "No": 4,
+        "Nama": "BANK SAMPAH UNIT CERDAS KENANGA",
+        "Kecamatan": "Payung Sekaki",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 565,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.412778,
+          "0.463889"
+        ]
+      },
+      "properties": {
+        "No": 5,
+        "Nama": "Bank Sampah Unit TJI RW 10 Sialang Munggu",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 234,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.443032,
+          "0.509418"
+        ]
+      },
+      "properties": {
+        "No": 6,
+        "Nama": "BANK SAMPAH UNIT INTAN KORONG",
+        "Kecamatan": "Sukajadi",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 103,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.412362,
+          "0.445819,"
+        ]
+      },
+      "properties": {
+        "No": 7,
+        "Nama": "Bank Sampah Unit Rukun Berlian",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 450,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.356269,
+          "0.477806, "
+        ]
+      },
+      "properties": {
+        "No": 8,
+        "Nama": "Bank Sampah Unit PURI BERLIAN",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 292,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.367995,
+          "0.473934, "
+        ]
+      },
+      "properties": {
+        "No": 9,
+        "Nama": "Bank Sampah Unit NUSA INDAH",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 39,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.342399,
+          "0.477972, "
+        ]
+      },
+      "properties": {
+        "No": 10,
+        "Nama": "Bank Sampah Unit BERKAH",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 86,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.387626,
+          "0.464135, "
+        ]
+      },
+      "properties": {
+        "No": 11,
+        "Nama": "Bank Sampah Wana Asri",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 256,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.451104,
+          "0.569557"
+        ]
+      },
+      "properties": {
+        "No": 12,
+        "Nama": "Bank Sampah Mitra Karya",
+        "Kecamatan": "Rumbai",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 121,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.45883,
+          "0.564067"
+        ]
+      },
+      "properties": {
+        "No": 13,
+        "Nama": "Bank sampah berkah abadi",
+        "Kecamatan": "Rumbai",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 312,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.38073,
+          "0.458803"
+        ]
+      },
+      "properties": {
+        "No": 14,
+        "Nama": "Bank sampah mutiara",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 212,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.401552,
+          "0.477693"
+        ]
+      },
+      "properties": {
+        "No": 15,
+        "Nama": "Bank Sampah Cahaya Berkah Edukasi",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 220,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.4767,
+          "0.50158"
+        ]
+      },
+      "properties": {
+        "No": 16,
+        "Nama": "Bank Sampah Unit Sidodadi Berlian",
+        "Kecamatan": "Payung Sekaki",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 7950,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.42753,
+          "0.50676"
+        ]
+      },
+      "properties": {
+        "No": 17,
+        "Nama": "BANK SAMPAH UNIT ANGGREK PUTIH",
+        "Kecamatan": "Payung Sekaki",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 702,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.44474,
+          "0.51328"
+        ]
+      },
+      "properties": {
+        "No": 18,
+        "Nama": "Bank Sampah Unit Langsat",
+        "Kecamatan": "Payung Sekaki",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 520,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.4718,
+          "0.506734"
+        ]
+      },
+      "properties": {
+        "No": 19,
+        "Nama": "BANK SAMPAH UNIT AMANAH",
+        "Kecamatan": "Bukit Raya",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 4528,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.4100387,
+          "0.515304"
+        ]
+      },
+      "properties": {
+        "No": 20,
+        "Nama": "Bank Sampah Unit Sepakat Madani",
+        "Kecamatan": "Payung Sekaki",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 1,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 12672,
+        "Jumlah_Anggota": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.514608,
+          "0.446987"
+        ]
+      },
+      "properties": {
+        "No": 21,
+        "Nama": "Bank Sampah Unit SMPN 039 Pekanbaru",
+        "Kecamatan": "Tenayan Raya",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 200,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.443747,
+          "0.512797"
+        ]
+      },
+      "properties": {
+        "No": 22,
+        "Nama": "Indonesia Sedekah Sampah",
+        "Kecamatan": "Sukajadi",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 100,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.438239,
+          "0.50753"
+        ]
+      },
+      "properties": {
+        "No": 23,
+        "Nama": "BANK SAMPAH UNIT HARAPAN BERKAH",
+        "Kecamatan": "Sukajadi",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 1,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 310,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.419412,
+          "0.539477"
+        ]
+      },
+      "properties": {
+        "No": 24,
+        "Nama": "Bank Sampah Unit Smart Mentari",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 964,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.4363,
+          "0.56185"
+        ]
+      },
+      "properties": {
+        "No": 25,
+        "Nama": "Rukan Pak Harianja",
+        "Kecamatan": "Rumbai",
+        "Kertas": 0,
+        "Plastik": 0,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 1,
+        "Volume_Sampah_kg_per_minggu": 200,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.476791,
+          "0.501685"
+        ]
+      },
+      "properties": {
+        "No": 26,
+        "Nama": "Besi Tua",
+        "Kecamatan": "Bukit Raya",
+        "Kertas": 0,
+        "Plastik": 0,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 1,
+        "Volume_Sampah_kg_per_minggu": 350,
+        "Jumlah_Anggota": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.396734,
+          "0.485087"
+        ]
+      },
+      "properties": {
+        "No": 27,
+        "Nama": "Gudang Besi Rajawali Sakti",
+        "Kecamatan": "Tampan",
+        "Kertas": 0,
+        "Plastik": 0,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 1,
+        "Volume_Sampah_kg_per_minggu": 400,
+        "Jumlah_Anggota": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.429195,
+          "0.568101"
+        ]
+      },
+      "properties": {
+        "No": 28,
+        "Nama": "Rumbai Steel",
+        "Kecamatan": "Rumbai",
+        "Kertas": 0,
+        "Plastik": 0,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 1,
+        "Volume_Sampah_kg_per_minggu": 321,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.427147,
+          "0.523379"
+        ]
+      },
+      "properties": {
+        "No": 29,
+        "Nama": "Sinar Baja",
+        "Kecamatan": "Payung Sekaki",
+        "Kertas": 0,
+        "Plastik": 0,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 1,
+        "Volume_Sampah_kg_per_minggu": 402,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.439803,
+          "0.50728"
+        ]
+      },
+      "properties": {
+        "No": 30,
+        "Nama": "Mitra Graha",
+        "Kecamatan": "Sukajadi",
+        "Kertas": 0,
+        "Plastik": 0,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 1,
+        "Volume_Sampah_kg_per_minggu": 230,
+        "Jumlah_Anggota": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.3754123,
+          "0.499841"
+        ]
+      },
+      "properties": {
+        "No": 31,
+        "Nama": "Gudang Simpang Baru",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 1,
+        "Kaca": 1,
+        "Logam": 1,
+        "Volume_Sampah_kg_per_minggu": 522,
+        "Jumlah_Anggota": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.411337,
+          "0.567021"
+        ]
+      },
+      "properties": {
+        "No": 32,
+        "Nama": "Bank Sampah Kartika Sari RW 15",
+        "Kecamatan": "Rumbai",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 512,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.43356,
+          "0.515416"
+        ]
+      },
+      "properties": {
+        "No": 33,
+        "Nama": "Bank Sampah Unit Berkah Kel. Perhentian Marpoyan",
+        "Kecamatan": "Sukajadi",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 165,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.474385,
+          "0.446396"
+        ]
+      },
+      "properties": {
+        "No": 34,
+        "Nama": "Bank Sampah Unit Madani Kreatif GTU",
+        "Kecamatan": "Bukit Raya",
+        "Kertas": 0,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 19,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.442229,
+          "0.564038"
+        ]
+      },
+      "properties": {
+        "No": 35,
+        "Nama": "Bank Sampah Unit Terpesona",
+        "Kecamatan": "Rumbai",
+        "Kertas": 0,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 502,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.43777,
+          "0.526479"
+        ]
+      },
+      "properties": {
+        "No": 36,
+        "Nama": "Bank Sampah Unit Semangat Maju Bersama",
+        "Kecamatan": "Sukajadi",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 1285,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.459005,
+          "0.457785"
+        ]
+      },
+      "properties": {
+        "No": 37,
+        "Nama": "Bank Sampah Unit Berkah Sejahtera",
+        "Kecamatan": "Bukit Raya",
+        "Kertas": 0,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 147,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.444701,
+          "0.514734"
+        ]
+      },
+      "properties": {
+        "No": 38,
+        "Nama": "Bank Sampah Unit Pepaya",
+        "Kecamatan": "Sukajadi",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 258,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.399557,
+          "0.582554"
+        ]
+      },
+      "properties": {
+        "No": 39,
+        "Nama": "Gudang Palas",
+        "Kecamatan": "Rumbai",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 1,
+        "Volume_Sampah_kg_per_minggu": 452,
+        "Jumlah_Anggota": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.391375,
+          "0.450839"
+        ]
+      },
+      "properties": {
+        "No": 40,
+        "Nama": "Bank Sampah Unit TJI RW 10 Sialang Munggu",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 196,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.369278,
+          "0.452742"
+        ]
+      },
+      "properties": {
+        "No": 41,
+        "Nama": "Bank Sampah Unit Madani RW 04",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 340,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.367474,
+          "0.450119"
+        ]
+      },
+      "properties": {
+        "No": 42,
+        "Nama": "Bank Sampah Unit Senang Bersama",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 235,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.399875,
+          "0.44055"
+        ]
+      },
+      "properties": {
+        "No": 43,
+        "Nama": "Bank Sampah Unit Mawar Utama",
+        "Kecamatan": "Tampan",
+        "Kertas": 0,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 1,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 334,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.417633,
+          "0.537058"
+        ]
+      },
+      "properties": {
+        "No": 44,
+        "Nama": "Bank Sampah Unit Tunas Karya",
+        "Kecamatan": "Payung Sekaki",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 196,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.427568,
+          "0.535353"
+        ]
+      },
+      "properties": {
+        "No": 45,
+        "Nama": "Rumah Plastik Pekanbaru",
+        "Kecamatan": "Tampan",
+        "Kertas": 0,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 180,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.442109,
+          "0.517096"
+        ]
+      },
+      "properties": {
+        "No": 46,
+        "Nama": "Bank Sampah Unit Mekar Kembali 3",
+        "Kecamatan": "Sukajadi",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 223,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.405808,
+          "0.589271"
+        ]
+      },
+      "properties": {
+        "No": 47,
+        "Nama": "Palas Jaya Plastik",
+        "Kecamatan": "Rumbai",
+        "Kertas": 0,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 188,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.404639,
+          "0.536046"
+        ]
+      },
+      "properties": {
+        "No": 48,
+        "Nama": "Gudang plastik kara",
+        "Kecamatan": "Payung Sekaki",
+        "Kertas": 0,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 220,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.438339,
+          "0.522215"
+        ]
+      },
+      "properties": {
+        "No": 49,
+        "Nama": "BANK SAMPAH UNIT DAHLIA",
+        "Kecamatan": "Sukajadi",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 1,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 171,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.437099,
+          "0.514063"
+        ]
+      },
+      "properties": {
+        "No": 50,
+        "Nama": "Bank Sampah Unit Sejahtera Jaya",
+        "Kecamatan": "Sukajadi",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 1,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 451,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.436049,
+          "0.513514"
+        ]
+      },
+      "properties": {
+        "No": 51,
+        "Nama": "Bank Sampah Unit RW 07",
+        "Kecamatan": "Sukajadi",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 975,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.463896,
+          "0.458328"
+        ]
+      },
+      "properties": {
+        "No": 52,
+        "Nama": "Bank Sampah Unit Sejahtera Lestari",
+        "Kecamatan": "Bukit Raya",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 760,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.415012,
+          "0.450489"
+        ]
+      },
+      "properties": {
+        "No": 53,
+        "Nama": "BANK SAMPAH UNIT DAMAI BERLIAN",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 1,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 293,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.445607,
+          "0.574932"
+        ]
+      },
+      "properties": {
+        "No": 54,
+        "Nama": "Bank Sampah Unit Raziq Damai Bersih",
+        "Kecamatan": "Rumbai",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 1,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 357,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.452814,
+          "0.457754"
+        ]
+      },
+      "properties": {
+        "No": 55,
+        "Nama": "Bank Sampah Unit Setia Menanti Rahmad",
+        "Kecamatan": "Bukit Raya",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 322,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.436468,
+          "0.521174"
+        ]
+      },
+      "properties": {
+        "No": 56,
+        "Nama": "Bank Sampah Unit Mekar Serumpun",
+        "Kecamatan": "Sukajadi",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 412,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.459182,
+          "0.493527"
+        ]
+      },
+      "properties": {
+        "No": 57,
+        "Nama": "Bank Sampah Unit Puan Sari Mandiri",
+        "Kecamatan": "Bukit Raya",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 235,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.412316,
+          "0.537897"
+        ]
+      },
+      "properties": {
+        "No": 58,
+        "Nama": "Bank Sampah Unit BERKAH",
+        "Kecamatan": "Payung Sekaki",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 511,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.463604,
+          "0.458355"
+        ]
+      },
+      "properties": {
+        "No": 59,
+        "Nama": "Bank Sampah Unit PKK RW 01",
+        "Kecamatan": "Bukit Raya",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 1,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 213,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.433557,
+          "0.529764"
+        ]
+      },
+      "properties": {
+        "No": 60,
+        "Nama": "Bank Sampah Unit Mulia Bestari",
+        "Kecamatan": "Rumbai",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 555,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.461292,
+          "0.48073"
+        ]
+      },
+      "properties": {
+        "No": 61,
+        "Nama": "Bank Sampah Unit Karya Maju",
+        "Kecamatan": "Bukit Raya",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 1,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 622,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.40195,
+          "0.491736"
+        ]
+      },
+      "properties": {
+        "No": 62,
+        "Nama": "Bank Sampah Unit Sekuntum Sejahtera",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 1,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 255,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.476541,
+          "0.501589"
+        ]
+      },
+      "properties": {
+        "No": 63,
+        "Nama": "Bank Sampah Unit Sidodadi Berlian",
+        "Kecamatan": "Bukit Raya",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 400,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.411246,
+          "0.567032"
+        ]
+      },
+      "properties": {
+        "No": 64,
+        "Nama": "Bank Sampah Kartika Sari RW 15",
+        "Kecamatan": "Rumbai",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 1,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 202,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.434706,
+          "0.565513"
+        ]
+      },
+      "properties": {
+        "No": 65,
+        "Nama": "Bank Sampah 86",
+        "Kecamatan": "Rumbai",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 114,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.42576,
+          "0.524723"
+        ]
+      },
+      "properties": {
+        "No": 66,
+        "Nama": "Bank Sampah Bintara",
+        "Kecamatan": "Payung Sekaki",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 321,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.37575,
+          "0.436644"
+        ]
+      },
+      "properties": {
+        "No": 67,
+        "Nama": "Bank Sampah Unit Lancang Kuning Bestari",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 211,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.463022,
+          "0.504141"
+        ]
+      },
+      "properties": {
+        "No": 68,
+        "Nama": "BANK SAMPAH UNIT BAROKAH RW 08",
+        "Kecamatan": "Bukit Raya",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 150,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.480837,
+          "0.501693"
+        ]
+      },
+      "properties": {
+        "No": 69,
+        "Nama": "Bank Sampah Unit Sejahtera Mandiri",
+        "Kecamatan": "Bukit Raya",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 198,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.474711,
+          "0.499709"
+        ]
+      },
+      "properties": {
+        "No": 70,
+        "Nama": "BANK SAMPAH UNIT BERKAH BERLIAN",
+        "Kecamatan": "Bukit Raya",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 1,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 220,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.360899,
+          "0.478637"
+        ]
+      },
+      "properties": {
+        "No": 71,
+        "Nama": "Bank Sampah Unit Teratai Putih",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 120,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.43663,
+          "0.50772"
+        ]
+      },
+      "properties": {
+        "No": 72,
+        "Nama": "Bank Sampah Unit Pasar Dupa",
+        "Kecamatan": "Sukajadi",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 132,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.390778,
+          "0.449751"
+        ]
+      },
+      "properties": {
+        "No": 73,
+        "Nama": "Bank Sampah Unit TJI RW 10 Sialang Munggu",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 1,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 210,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.383836,
+          "0.436634"
+        ]
+      },
+      "properties": {
+        "No": 74,
+        "Nama": "Bank Sampah Unit Lestari",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 220,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.417247,
+          "0.537304"
+        ]
+      },
+      "properties": {
+        "No": 75,
+        "Nama": "Bank Sampah Unit Tunas Karya",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 185,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.431274,
+          "0.56473"
+        ]
+      },
+      "properties": {
+        "No": 76,
+        "Nama": "Bank Sampah Yos Sudarso",
+        "Kecamatan": "Rumbai",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 1,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 260,
+        "Jumlah_Anggota": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.413169,
+          "0.563259"
+        ]
+      },
+      "properties": {
+        "No": 77,
+        "Nama": "Bank Sampah Kartika Sari",
+        "Kecamatan": "Rumbai",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 177,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.426839,
+          "0.510318"
+        ]
+      },
+      "properties": {
+        "No": 78,
+        "Nama": "Bank Sampah Meranti",
+        "Kecamatan": "Rumbai",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 201,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.408236,
+          "0.55209"
+        ]
+      },
+      "properties": {
+        "No": 79,
+        "Nama": "Bank Sampah Jalan Nelayan",
+        "Kecamatan": "Rumbai",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 110,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.398083,
+          "0.560602"
+        ]
+      },
+      "properties": {
+        "No": 80,
+        "Nama": "ML Logam",
+        "Kecamatan": "Rumbai",
+        "Kertas": 0,
+        "Plastik": 0,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 1,
+        "Volume_Sampah_kg_per_minggu": 450,
+        "Jumlah_Anggota": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.480607,
+          "0.499411"
+        ]
+      },
+      "properties": {
+        "No": 81,
+        "Nama": "Bank Sampah Unit Unit RT 03 RW 08",
+        "Kecamatan": "Bukit Raya",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 111,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.396549,
+          "0.485079"
+        ]
+      },
+      "properties": {
+        "No": 82,
+        "Nama": "Gudang Bekas Rajawali 2",
+        "Kecamatan": "Tampan",
+        "Kertas": 0,
+        "Plastik": 0,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 1,
+        "Volume_Sampah_kg_per_minggu": 290,
+        "Jumlah_Anggota": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.352034,
+          "0.482112"
+        ]
+      },
+      "properties": {
+        "No": 83,
+        "Nama": "Bekas Pekanbaru",
+        "Kecamatan": "Tampan",
+        "Kertas": 0,
+        "Plastik": 0,
+        "Besi": 1,
+        "Kaca": 1,
+        "Logam": 1,
+        "Volume_Sampah_kg_per_minggu": 230,
+        "Jumlah_Anggota": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.470306,
+          "0.476978"
+        ]
+      },
+      "properties": {
+        "No": 84,
+        "Nama": "Bank Sampah Unit DLHK Kota Pekanbaru",
+        "Kecamatan": "Bukit Raya",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 1,
+        "Kaca": 1,
+        "Logam": 1,
+        "Volume_Sampah_kg_per_minggu": 334,
+        "Jumlah_Anggota": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.397649,
+          "0.474389"
+        ]
+      },
+      "properties": {
+        "No": 85,
+        "Nama": "Bank Sampah Unit Rajawali Sakti",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 1,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 170,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.374697,
+          "0.482403"
+        ]
+      },
+      "properties": {
+        "No": 86,
+        "Nama": "BANK SAMPAH UNIT ELBA BESTARI",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 105,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.425632,
+          "0.433949"
+        ]
+      },
+      "properties": {
+        "No": 87,
+        "Nama": "BANK SAMPAH UNIT GEMAR 08",
+        "Kecamatan": "Tampan",
+        "Kertas": 0,
+        "Plastik": 0,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 203,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.428359,
+          "0.428192"
+        ]
+      },
+      "properties": {
+        "No": 88,
+        "Nama": "BANK SAMPAH UNIT GREEN SELARAS",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 168,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.4429,
+          "0.52076"
+        ]
+      },
+      "properties": {
+        "No": 89,
+        "Nama": "Bank Sampah Unit RS Awal Bros A.Yani",
+        "Kecamatan": "Sukajadi",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 178,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.45328,
+          "0.50034"
+        ]
+      },
+      "properties": {
+        "No": 90,
+        "Nama": "Bank Sampah Unit Nuri Lestari",
+        "Kecamatan": "Bukit Raya",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 1,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 114,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.396553,
+          "0.485475"
+        ]
+      },
+      "properties": {
+        "No": 91,
+        "Nama": "William Steel",
+        "Kecamatan": "Tampan",
+        "Kertas": 0,
+        "Plastik": 0,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 256,
+        "Jumlah_Anggota": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.36774,
+          "0.476993"
+        ]
+      },
+      "properties": {
+        "No": 92,
+        "Nama": "Bank Sampah Nusa Indah",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 98,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.44701,
+          "0.57087"
+        ]
+      },
+      "properties": {
+        "No": 93,
+        "Nama": "Bank Sampah Unit SDN 102 Pekanbaru",
+        "Kecamatan": "Rumbai",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 124,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.40092,
+          "0.45634"
+        ]
+      },
+      "properties": {
+        "No": 94,
+        "Nama": "Bank Sampah Unit Teladan",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 109,
+        "Jumlah_Anggota": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.402098,
+          "0.478572"
+        ]
+      },
+      "properties": {
+        "No": 95,
+        "Nama": "Besi Tua Tampan",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 0,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 194,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.444803,
+          "0.513337"
+        ]
+      },
+      "properties": {
+        "No": 96,
+        "Nama": "Bank Sampah Unit Langsat",
+        "Kecamatan": "Sukajadi",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 170,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.368148,
+          "0.464676"
+        ]
+      },
+      "properties": {
+        "No": 97,
+        "Nama": "Kertas Bekas Permata",
+        "Kecamatan": "Tampan",
+        "Kertas": 1,
+        "Plastik": 0,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 165,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.429663,
+          "0.524475"
+        ]
+      },
+      "properties": {
+        "No": 98,
+        "Nama": "Karton Bekas Sukajadi",
+        "Kecamatan": "Sukajadi",
+        "Kertas": 1,
+        "Plastik": 0,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 220,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.433556,
+          "0.505906"
+        ]
+      },
+      "properties": {
+        "No": 99,
+        "Nama": "Kertas Bekas Sukajadi",
+        "Kecamatan": "Sukajadi",
+        "Kertas": 1,
+        "Plastik": 0,
+        "Besi": 0,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 201,
+        "Jumlah_Anggota": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.465422,
+          "0.501805"
+        ]
+      },
+      "properties": {
+        "No": 100,
+        "Nama": "BANK SAMPAH UNIT KANDIS BERKAYA",
+        "Kecamatan": "Bukit Raya",
+        "Kertas": 1,
+        "Plastik": 1,
+        "Besi": 1,
+        "Kaca": 0,
+        "Logam": 0,
+        "Volume_Sampah_kg_per_minggu": 85,
+        "Jumlah_Anggota": 1
+      }
+    }
+  ]
+}
