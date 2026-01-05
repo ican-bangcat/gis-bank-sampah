@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Directory - Bank Sampah Pekanbaru</title>
+    <link rel="icon" type="image/png" href="/gis-bank-sampah/assets/icona-DqUn6oR1.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #2d7a3e;
+            --light-green: #4caf50;
+            --dark-green: #1b5e20;
+            --bg-light: #f1f8f4;
+            --accent-blue: #3498db;
+            --accent-orange: #e67e22;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(45, 122, 62, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(76, 175, 80, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navbar Enhanced */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar-brand i {
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .navbar-nav .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem !important;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .navbar-nav .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover::before {
+            left: 100%;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: white !important;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Page Header Enhanced */
+        .page-header {
+            background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .page-title {
+            color: var(--primary-green);
+            font-weight: 700;
+            font-size: 2.5rem;
+            animation: slideInLeft 0.6s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            animation: slideInLeft 0.8s ease;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Statistics Cards Enhanced */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--primary-green) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(45, 122, 62, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            transition: all 0.6s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(45, 122, 62, 0.4);
+        }
+
+        .stat-box:hover::before {
+            top: -30%;
+            right: -30%;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        .stat-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 3rem;
+            opacity: 0.2;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Filter Card Enhanced */
+        .filter-card {
+            background: linear-gradient(135deg, white 0%, #fafafa 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            border: 1px solid rgba(76, 175, 80, 0.1);
+            animation: fadeInUp 0.8s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--light-green), var(--primary-green));
+        }
+
+        .filter-card h5 {
+            color: var(--primary-green);
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            display: block;
+            font-size: 0.95rem;
+        }
+
+        .form-control, .form-select {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--light-green);
+            box-shadow: 0 0 0 0.3rem rgba(76, 175, 80, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .form-control:hover, .form-select:hover {
+            border-color: var(--light-green);
+        }
+
+        /* Checkbox Group Enhanced */
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 0.75rem 1.25rem;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .checkbox-item:hover {
+            border-color: var(--light-green);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(45, 122, 62, 0.2);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--light-green);
+        }
+
+        .checkbox-item input[type="checkbox"]:checked + label {
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+
+        .checkbox-item label {
+            cursor: pointer;
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+
+        .checkbox-item i {
+            font-size: 1.1rem;
+            margin-right: 0.3rem;
+        }
+
+        /* Reset Button Enhanced */
+        .btn-reset {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-reset::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-reset:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-reset:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+
+        /* Data Table Enhanced */
+        .data-table-card {
+            background: linear-gradient(135deg, white 0%, #fafafa 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            animation: fadeInUp 1s ease;
+            border: 1px solid rgba(76, 175, 80, 0.1);
+        }
+
+        .table-responsive {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table thead th {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+            color: white;
+            font-weight: 600;
+            border: none;
+            padding: 1.25rem 1rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .table tbody tr {
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .table tbody tr:hover {
+            background: linear-gradient(90deg, rgba(232, 245, 233, 0.5) 0%, rgba(200, 230, 201, 0.3) 100%);
+            transform: scale(1.01);
+            box-shadow: 0 4px 15px rgba(45, 122, 62, 0.1);
+        }
+
+        .table tbody td {
+            padding: 1rem;
+            vertical-align: middle;
+        }
+
+        /* Badge Enhanced */
+        .badge-jenis {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 8px;
+            margin: 0.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .badge-jenis:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+
+        .badge-kertas { 
+            background: linear-gradient(135deg, #8b4513 0%, #6d3510 100%);
+            color: white; 
+        }
+        .badge-plastik { 
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white; 
+        }
+        .badge-besi { 
+            background: linear-gradient(135deg, #7f8c8d 0%, #646f70 100%);
+            color: white; 
+        }
+        .badge-kaca { 
+            background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
+            color: white; 
+        }
+        .badge-logam { 
+            background: linear-gradient(135deg, #95a5a6 0%, #7b8a8b 100%);
+            color: white; 
+        }
+
+        /* Map Button Enhanced */
+        .btn-map {
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--primary-green) 100%);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-map::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-map:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-map:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+            color: white;
+        }
+
+        /* Loading & No Data Enhanced */
+        .loading {
+            text-align: center;
+            padding: 4rem;
+            color: var(--primary-green);
+        }
+
+        .loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 4rem;
+            color: #666;
+        }
+
+        .no-data i {
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Pagination Controls Enhanced */
+        .pagination-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        #entries-per-page {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        #entries-per-page:focus {
+            border-color: var(--light-green);
+            box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.15);
+        }
+
+        #pagination-info {
+            font-size: 0.95rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        #pagination-info strong {
+            color: var(--primary-green);
+        }
+
+        /* Responsive Enhancements */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .stat-box {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .filter-card {
+                padding: 1.5rem;
+            }
+
+            .checkbox-group {
+                gap: 0.75rem;
+            }
+
+            .checkbox-item {
+                padding: 0.6rem 1rem;
+            }
+
+            .data-table-card {
+                padding: 1rem;
+            }
+
+            .pagination-controls {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        /* Scroll Animation */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+  <script type="module" crossorigin src="/gis-bank-sampah/assets/data-CvYMuqrE.js"></script>
+  <link rel="modulepreload" crossorigin href="/gis-bank-sampah/assets/index-BnnGfpH5.js">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-recycle me-2"></i> GIS Bank Sampah
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i> Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="data.html">
+                            <i class="fas fa-table me-1"></i> Direktori Data
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="map.html">
+                            <i class="fas fa-map-marked-alt me-1"></i> Peta Interaktif
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">
+                <i class="fas fa-database"></i> Data Directory Bank Sampah
+            </h1>
+            <p class="text-muted">Cari dan filter bank sampah berdasarkan lokasi dan jenis layanan</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container pb-5">
+        <!-- Statistics -->
+        <div class="stats-row">
+            <div class="stat-box">
+                <i class="fas fa-building stat-icon"></i>
+                <div class="stat-number" id="stat-total">0</div>
+                <div class="stat-label">Total Bank Sampah</div>
+            </div>
+            <div class="stat-box">
+                <i class="fas fa-filter stat-icon"></i>
+                <div class="stat-number" id="stat-filtered">0</div>
+                <div class="stat-label">Hasil Filter</div>
+            </div>
+        </div>
+
+        <!-- Filter Card -->
+        <div class="filter-card animate-on-scroll">
+            <h5><i class="fas fa-filter"></i> Filter & Pencarian</h5>
+            
+            <div class="row g-3">
+                <!-- Search Box -->
+                <div class="col-md-6">
+                    <label class="filter-label">
+                        <i class="fas fa-search"></i> Cari Nama Bank Sampah
+                    </label>
+                    <input type="text" class="form-control" id="search-box" placeholder="Ketik nama bank sampah...">
+                </div>
+
+                <!-- Kecamatan Filter -->
+                <div class="col-md-6">
+                    <label class="filter-label">
+                        <i class="fas fa-map-marker-alt"></i> Filter Kecamatan
+                    </label>
+                    <select class="form-select" id="kecamatan-filter">
+                        <option value="">Semua Kecamatan</option>
+                    </select>
+                </div>
+
+                <!-- Jenis Sampah Filter -->
+                <div class="col-12">
+                    <label class="filter-label">
+                        <i class="fas fa-recycle"></i> Filter Jenis Sampah yang Diterima
+                    </label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="filter-kertas" value="Kertas" checked>
+                            <label for="filter-kertas">
+                                <i class="fas fa-newspaper" style="color: #8b4513;"></i> Kertas
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="filter-plastik" value="Plastik" checked>
+                            <label for="filter-plastik">
+                                <i class="fas fa-bottle-water" style="color: #3498db;"></i> Plastik
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="filter-besi" value="Besi" checked>
+                            <label for="filter-besi">
+                                <i class="fas fa-wrench" style="color: #7f8c8d;"></i> Besi
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="filter-kaca" value="Kaca" checked>
+                            <label for="filter-kaca">
+                                <i class="fas fa-wine-bottle" style="color: #1abc9c;"></i> Kaca
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="filter-logam" value="Logam" checked>
+                            <label for="filter-logam">
+                                <i class="fas fa-cog" style="color: #95a5a6;"></i> Logam
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reset Button -->
+                <div class="col-12 text-end">
+                    <button class="btn-reset" id="btn-reset">
+                        <i class="fas fa-redo"></i> Reset Filter
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="data-table-card animate-on-scroll">
+            <div id="loading" class="loading">
+                <i class="fas fa-spinner fa-spin fa-3x"></i>
+                <p class="mt-3">Memuat data...</p>
+            </div>
+
+            <div id="table-container" style="display: none;">
+                <!-- Pagination Controls -->
+                <div class="pagination-controls">
+                    <div>
+                        <label class="filter-label mb-0" style="display: inline;">
+                            Tampilkan:
+                        </label>
+                        <select class="form-select d-inline-block" id="entries-per-page" style="width: auto; margin-left: 0.5rem;">
+                            <option value="10">10 data</option>
+                            <option value="20">20 data</option>
+                            <option value="50">50 data</option>
+                            <option value="100">100 data</option>
+                            <option value="-1">Semua data</option>
+                        </select>
+                    </div>
+                    <div id="pagination-info">
+                        Menampilkan <strong id="showing-start">0</strong> - <strong id="showing-end">0</strong> dari <strong id="showing-total">0</strong> data
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;">No</th>
+                                <th>Nama Bank Sampah</th>
+                                <th>Kecamatan</th>
+                                <th>Jenis Diterima</th>
+                                <th style="width: 120px;">Volume (kg)</th>
+                                <th style="width: 100px;">Anggota</th>
+                                <th style="width: 150px;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="data-tbody">
+                            <!-- Data will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="no-data" class="no-data" style="display: none;">
+                    <i class="fas fa-inbox fa-3x mb-3" style="color: #ccc;"></i>
+                    <p>Tidak ada data yang sesuai dengan filter</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
