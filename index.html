@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      GIS Bank Sampah - Sistem Informasi Geografis Pemetaan Bank Sampah
+    </title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/gis-bank-sampah/assets/icona-DqUn6oR1.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/gis-bank-sampah/assets/iconaa-10oQCACH.png" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-green: #2d7a3e;
+        --light-green: #4caf50;
+        --lighter-green: #81c784;
+        --dark-green: #1b5e20;
+        --bg-light: #f1f8f4;
+        --text-dark: #2c3e50;
+        --orange: #ff9800;
+        --blue: #2196f3;
+        --purple: #9c27b0;
+        --red: #f44336;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--text-dark);
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+
+      /* Navbar Styles */
+      .navbar {
+        background: linear-gradient(
+          135deg,
+          var(--primary-green) 0%,
+          var(--dark-green) 100%
+        );
+        padding: 1rem 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: white !important;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .navbar-brand i {
+        font-size: 1.8rem;
+      }
+
+      .navbar-nav .nav-link {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-weight: 500;
+        margin: 0 0.5rem;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .navbar-nav .nav-link:hover {
+        color: white !important;
+        transform: translateY(-2px);
+      }
+
+      .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 50%;
+        background-color: white;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .navbar-nav .nav-link:hover::after {
+        width: 80%;
+      }
+
+      .navbar-nav .nav-link.active {
+        color: white !important;
+        font-weight: 600;
+      }
+
+      .navbar-nav .nav-link.active::after {
+        width: 80%;
+      }
+
+      /* Hero Section */
+      .hero-section {
+        position: relative;
+        height: 90vh;
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+            rgba(29, 94, 32, 0.7),
+            rgba(45, 122, 62, 0.8)
+          ),
+          url("https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=1600&q=80")
+            center/cover;
+        color: white;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+        padding: 2rem;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        line-height: 1.2;
+      }
+
+      .hero-subtitle {
+        font-size: 1.4rem;
+        margin-bottom: 2.5rem;
+        font-weight: 300;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        line-height: 1.6;
+      }
+
+      .btn-cta {
+        background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+        color: var(--dark-green);
+        padding: 1rem 3rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+        border: none;
+        border-radius: 50px;
+        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        margin: 0.5rem;
+      }
+
+      .btn-cta:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 12px 30px rgba(255, 215, 0, 0.6);
+        color: var(--dark-green);
+      }
+
+      .btn-cta i {
+        margin-left: 0.5rem;
+      }
+
+      .btn-cta-secondary {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
+        color: var(--primary-green);
+      }
+
+      .btn-cta-secondary:hover {
+        color: var(--primary-green);
+      }
+
+      /* Stats Section */
+      .stats-section {
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+        padding: 3rem 0;
+        color: white;
+        margin-top: -2px;
+      }
+
+      .stat-card {
+        text-align: center;
+        padding: 1.5rem;
+      }
+
+      .stat-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        opacity: 0.9;
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        font-size: 1rem;
+        opacity: 0.9;
+        font-weight: 300;
+      }
+
+      /* Tentang Section */
+      .about-section {
+        padding: 5rem 0;
+        background-color: white;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-green);
+        margin-bottom: 1rem;
+        text-align: center;
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--light-green),
+          var(--lighter-green)
+        );
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+      }
+
+      .section-subtitle {
+        text-align: center;
+        color: #666;
+        font-size: 1.1rem;
+        margin-bottom: 3rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .about-content {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #555;
+      }
+
+      .about-highlight {
+        background: var(--bg-light);
+        padding: 2rem;
+        border-radius: 15px;
+        border-left: 5px solid var(--light-green);
+        margin-top: 2rem;
+      }
+
+      /* Coverage Area Section */
+      .coverage-section {
+        background: var(--bg-light);
+        padding: 4rem 0;
+      }
+
+      .coverage-badge {
+        display: inline-block;
+        background: white;
+        padding: 0.8rem 1.5rem;
+        border-radius: 50px;
+        margin: 0.5rem;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        font-weight: 600;
+        color: var(--primary-green);
+        transition: all 0.3s ease;
+      }
+
+      .coverage-badge:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(45, 122, 62, 0.3);
+      }
+
+      .coverage-badge i {
+        margin-right: 0.5rem;
+        color: var(--light-green);
+      }
+
+      /* Education Section */
+      .education-section {
+        padding: 5rem 0;
+        background: white;
+      }
+
+      .edu-card {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.4s ease;
+        height: 100%;
+        border-top: 5px solid transparent;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .edu-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+      }
+
+      .edu-card:hover::before {
+        left: 100%;
+      }
+
+      .edu-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 15px 40px rgba(45, 122, 62, 0.2);
+      }
+
+      .edu-card.step-1:hover {
+        border-top-color: #2196f3;
+      }
+
+      .edu-card.step-2:hover {
+        border-top-color: #4caf50;
+      }
+
+      .edu-card.step-3:hover {
+        border-top-color: #ff9800;
+      }
+
+      .edu-card.step-4:hover {
+        border-top-color: #9c27b0;
+      }
+
+      .edu-icon {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        border-radius: 50%;
+        position: relative;
+        transition: all 0.4s ease;
+      }
+
+      .edu-card:hover .edu-icon {
+        transform: rotateY(360deg);
+      }
+
+      .step-1 .edu-icon {
+        background: linear-gradient(135deg, #2196f3 0%, #64b5f6 100%);
+        color: white;
+        box-shadow: 0 5px 20px rgba(33, 150, 243, 0.4);
+      }
+
+      .step-2 .edu-icon {
+        background: linear-gradient(135deg, #4caf50 0%, #81c784 100%);
+        color: white;
+        box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+      }
+
+      .step-3 .edu-icon {
+        background: linear-gradient(135deg, #ff9800 0%, #ffb74d 100%);
+        color: white;
+        box-shadow: 0 5px 20px rgba(255, 152, 0, 0.4);
+      }
+
+      .step-4 .edu-icon {
+        background: linear-gradient(135deg, #9c27b0 0%, #ba68c8 100%);
+        color: white;
+        box-shadow: 0 5px 20px rgba(156, 39, 176, 0.4);
+      }
+
+      .step-number {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: white;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.1rem;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .step-1 .step-number {
+        color: #2196f3;
+      }
+
+      .step-2 .step-number {
+        color: #4caf50;
+      }
+
+      .step-3 .step-number {
+        color: #ff9800;
+      }
+
+      .step-4 .step-number {
+        color: #9c27b0;
+      }
+
+      .edu-card h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-green);
+        margin-bottom: 1rem;
+      }
+
+      .edu-card p {
+        color: #666;
+        line-height: 1.7;
+        font-size: 1rem;
+      }
+
+      /* Benefits Section */
+      .benefits-section {
+        background: linear-gradient(135deg, var(--bg-light) 0%, #e8f5e9 100%);
+        padding: 5rem 0;
+      }
+
+      .benefit-item {
+        display: flex;
+        align-items: flex-start;
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+      }
+
+      .benefit-item:hover {
+        transform: translateX(10px);
+        box-shadow: 0 5px 20px rgba(45, 122, 62, 0.15);
+      }
+
+      .benefit-icon {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+        background: linear-gradient(135deg, var(--light-green) 0%, var(--lighter-green) 100%);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        color: white;
+        margin-right: 1.5rem;
+      }
+
+      .benefit-content h4 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--primary-green);
+        margin-bottom: 0.5rem;
+      }
+
+      .benefit-content p {
+        color: #666;
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      /* Waste Types Section */
+      .waste-types-section {
+        padding: 5rem 0;
+        background: white;
+      }
+
+      .waste-type-card {
+        text-align: center;
+        padding: 2rem;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        height: 100%;
+        border: 3px solid transparent;
+      }
+
+      .waste-type-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--light-green);
+      }
+
+      .waste-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        color: var(--primary-green);
+        filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.1));
+      }
+
+      .waste-type-card h4 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--primary-green);
+        margin-bottom: 0.8rem;
+      }
+
+      .waste-examples {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      /* Features Section */
+      .features-section {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, var(--bg-light) 0%, #e8f5e9 100%);
+      }
+
+      .feature-card {
+        background: white;
+        border-radius: 20px;
+        padding: 2.5rem;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        height: 100%;
+        border-top: 5px solid transparent;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(45, 122, 62, 0.2);
+        border-top-color: var(--light-green);
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(
+          135deg,
+          var(--light-green) 0%,
+          var(--lighter-green) 100%
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2rem;
+        color: white;
+        box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-green);
+        margin-bottom: 1rem;
+      }
+
+      .feature-card p {
+        color: #666;
+        line-height: 1.7;
+        font-size: 1rem;
+      }
+
+      /* Footer */
+      .footer {
+        background: linear-gradient(
+          135deg,
+          var(--dark-green) 0%,
+          var(--primary-green) 100%
+        );
+        color: white;
+        padding: 3rem 0 2rem;
+      }
+
+      .footer-section {
+        margin-bottom: 2rem;
+      }
+
+      .footer-section h5 {
+        font-weight: 700;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+      }
+
+      .footer-section p, .footer-section a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        line-height: 2;
+        font-size: 0.95rem;
+      }
+
+      .footer-section a:hover {
+        color: white;
+        text-decoration: underline;
+      }
+
+      .footer-divider {
+        width: 60px;
+        height: 3px;
+        background: white;
+        margin: 2rem auto 1rem;
+        opacity: 0.7;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        margin-top: 1rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.2rem;
+        }
+
+        .hero-subtitle {
+          font-size: 1.1rem;
+        }
+
+        .btn-cta {
+          padding: 0.8rem 2rem;
+          font-size: 1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .stat-number {
+          font-size: 2rem;
+        }
+
+        .edu-icon {
+          width: 80px;
+          height: 80px;
+          font-size: 2.5rem;
+        }
+
+        .benefit-item {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .benefit-icon {
+          margin-right: 0;
+          margin-bottom: 1rem;
+        }
+      }
+
+      /* Scroll Animation */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .slide-in-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: all 0.8s ease-out;
+      }
+
+      .slide-in-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .slide-in-right {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.8s ease-out;
+      }
+
+      .slide-in-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* Pulse Animation */
+      @keyframes pulse {
+        0%, 100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-recycle"></i>
+          GIS Bank Sampah
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#tentang">Tentang</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#edukasi">Edukasi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="map.html">Peta</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="data.html">Data Directory</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#kontak">Kontak</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+      <div class="hero-content">
+        <h1 class="hero-title">Pemetaan Bank Sampah Wilayah Pekanbaru</h1>
+        <p class="hero-subtitle">
+          Sistem Informasi Geografis untuk Optimalisasi Pengelolaan Sampah di 6 Kecamatan Pekanbaru
+        </p>
+        <a href="map.html" class="btn-cta">
+          Jelajahi Peta <i class="fas fa-map-marked-alt"></i>
+        </a>
+        <a href="#edukasi" class="btn-cta btn-cta-secondary">
+          Pelajari Lebih Lanjut <i class="fas fa-book-open"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="stat-card fade-in">
+              <div class="stat-icon">
+                <i class="fas fa-building"></i>
+              </div>
+              <div class="stat-number">50+</div>
+              <div class="stat-label">Bank Sampah Terdaftar</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="stat-card fade-in">
+              <div class="stat-icon">
+                <i class="fas fa-map-marked-alt"></i>
+              </div>
+              <div class="stat-number">6</div>
+              <div class="stat-label">Kecamatan Terlayani</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="stat-card fade-in">
+              <div class="stat-icon">
+                <i class="fas fa-recycle"></i>
+              </div>
+              <div class="stat-number">5</div>
+              <div class="stat-label">Jenis Sampah Dikelola</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coverage Area Section -->
+    <section class="coverage-section">
+      <div class="container">
+        <h2 class="section-title fade-in">Wilayah Cakupan</h2>
+        <p class="section-subtitle fade-in">
+          Bank sampah yang terpetakan meliputi 6 kecamatan di Kota Pekanbaru
+        </p>
+        <div class="text-center fade-in">
+          <div class="coverage-badge">
+            <i class="fas fa-map-pin"></i> Kecamatan Rumbai
+          </div>
+          <div class="coverage-badge">
+            <i class="fas fa-map-pin"></i> Kecamatan Tampan
+          </div>
+          <div class="coverage-badge">
+            <i class="fas fa-map-pin"></i> Kecamatan Sukajadi
+          </div>
+          <div class="coverage-badge">
+            <i class="fas fa-map-pin"></i> Kecamatan Bukit Raya
+          </div>
+          <div class="coverage-badge">
+            <i class="fas fa-map-pin"></i> Kecamatan Payung Sekaki
+          </div>
+          <div class="coverage-badge">
+            <i class="fas fa-map-pin"></i> Kecamatan Tenayan Raya
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tentang Section -->
+    <section class="about-section" id="tentang">
+      <div class="container">
+        <h2 class="section-title fade-in">Tentang Sistem</h2>
+        <p class="section-subtitle fade-in">
+          Solusi Digital untuk Pengelolaan Bank Sampah yang Lebih Efektif
+        </p>
+        <div class="about-content fade-in">
+          <p>
+            Sistem Informasi Geografis Bank Sampah menyajikan pemetaan dan
+            <strong>analisis komprehensif</strong> tentang distribusi, kinerja, dan efektivitas 
+            bank sampah di 6 kecamatan wilayah Kota Pekanbaru.
+          </p>
+          <div class="about-highlight">
+            <p>
+              <i
+                class="fas fa-chart-line"
+                style="color: var(--light-green); margin-right: 0.5rem"
+              ></i>
+              Dengan memanfaatkan teknologi WebGIS, kami menghadirkan
+              visualisasi data spasial yang interaktif dan insights berbasis
+              lokasi untuk mendukung pengambilan keputusan strategis dalam
+              optimalisasi pengelolaan sampah berkelanjutan di kawasan yang terpetakan.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education-section" id="edukasi">
+      <div class="container">
+        <h2 class="section-title fade-in">Cara Kerja Bank Sampah</h2>
+        <p class="section-subtitle fade-in">
+          Pahami proses pengelolaan sampah yang menguntungkan dan ramah lingkungan
+        </p>
+        
+        <div class="row mt-5">
+          <!-- Step 1 -->
+          <div class="col-md-6 col-lg-3 mb-4 fade-in">
+            <div class="edu-card step-1">
+              <div class="edu-icon">
+                <div class="step-number">1</div>
+                <i class="fas fa-user-plus"></i>
+              </div>
+              <h3>Daftar & Jadi Nasabah</h3>
+              <p>
+                Daftarkan diri Anda sebagai nasabah bank sampah terdekat. 
+                Dapatkan buku tabungan sampah dan mulai perjalanan ramah lingkungan Anda.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="col-md-6 col-lg-3 mb-4 fade-in">
+            <div class="edu-card step-2">
+              <div class="edu-icon">
+                <div class="step-number">2</div>
+                <i class="fas fa-sort-amount-up"></i>
+              </div>
+              <h3>Pilah Sampah di Rumah</h3>
+              <p>
+                Pisahkan sampah berdasarkan jenisnya: kertas, plastik, logam, 
+                kaca, dan besi. Pastikan sampah dalam kondisi bersih dan kering.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="col-md-6 col-lg-3 mb-4 fade-in">
+            <div class="edu-card step-3">
+              <div class="edu-icon">
+                <div class="step-number">3</div>
+                <i class="fas fa-hand-holding-usd"></i>
+              </div>
+              <h3>Setor & Ditimbang</h3>
+              <p>
+                Setor sampah yang sudah dipilah ke bank sampah. Sampah akan 
+                ditimbang dan dinilai sesuai harga jual saat itu.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="col-md-6 col-lg-3 mb-4 fade-in">
+            <div class="edu-card step-4">
+              <div class="edu-icon">
+                <div class="step-number">4</div>
+                <i class="fas fa-coins"></i>
+              </div>
+              <h3>Dapat Uang Tabungan</h3>
+              <p>
+                Hasil penjualan sampah akan masuk ke buku tabungan Anda. 
+                Tabungan bisa diambil sewaktu-waktu atau digunakan untuk kebutuhan tertentu.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Waste Types Section -->
+    <section class="waste-types-section">
+      <div class="container">
+        <h2 class="section-title fade-in">Jenis Sampah yang Diterima</h2>
+        <p class="section-subtitle fade-in">
+          Bank sampah menerima berbagai jenis sampah anorganik yang bernilai ekonomis
+        </p>
+
+        <div class="row mt-5">
+          <!-- Kertas -->
+          <div class="col-md-6 col-lg-4 mb-4 slide-in-left">
+            <div class="waste-type-card">
+              <div class="waste-icon">
+                <i class="fas fa-newspaper"></i>
+              </div>
+              <h4>Kertas</h4>
+              <div class="waste-examples">
+                <i class="fas fa-check-circle text-success"></i> Koran & Majalah<br>
+                <i class="fas fa-check-circle text-success"></i> Kardus & Karton<br>
+                <i class="fas fa-check-circle text-success"></i> Buku Bekas<br>
+                <i class="fas fa-check-circle text-success"></i> Kertas HVS
+              </div>
+            </div>
+          </div>
+
+          <!-- Plastik -->
+          <div class="col-md-6 col-lg-4 mb-4 fade-in">
+            <div class="waste-type-card">
+              <div class="waste-icon">
+                <i class="fas fa-bottle-water"></i>
+              </div>
+              <h4>Plastik</h4>
+              <div class="waste-examples">
+                <i class="fas fa-check-circle text-success"></i> Botol Plastik (PET)<br>
+                <i class="fas fa-check-circle text-success"></i> Gelas & Ember Plastik<br>
+                <i class="fas fa-check-circle text-success"></i> Kantong Plastik<br>
+                <i class="fas fa-check-circle text-success"></i> Mainan Plastik
+              </div>
+            </div>
+          </div>
+
+          <!-- Logam -->
+          <div class="col-md-6 col-lg-4 mb-4 slide-in-right">
+            <div class="waste-type-card">
+              <div class="waste-icon">
+                <i class="fas fa-beer"></i>
+              </div>
+              <h4>Logam</h4>
+              <div class="waste-examples">
+                <i class="fas fa-check-circle text-success"></i> Kaleng Minuman<br>
+                <i class="fas fa-check-circle text-success"></i> Aluminium Foil<br>
+                <i class="fas fa-check-circle text-success"></i> Seng & Tembaga<br>
+                <i class="fas fa-check-circle text-success"></i> Kuningan
+              </div>
+            </div>
+          </div>
+
+          <!-- Kaca -->
+          <div class="col-md-6 col-lg-4 mb-4 slide-in-left">
+            <div class="waste-type-card">
+              <div class="waste-icon">
+                <i class="fas fa-wine-bottle"></i>
+              </div>
+              <h4>Kaca</h4>
+              <div class="waste-examples">
+                <i class="fas fa-check-circle text-success"></i> Botol Kaca<br>
+                <i class="fas fa-check-circle text-success"></i> Toples Kaca<br>
+                <i class="fas fa-check-circle text-success"></i> Gelas Kaca<br>
+                <i class="fas fa-check-circle text-success"></i> Pecahan Kaca
+              </div>
+            </div>
+          </div>
+
+          <!-- Besi -->
+          <div class="col-md-6 col-lg-4 mb-4 fade-in">
+            <div class="waste-type-card">
+              <div class="waste-icon">
+                <i class="fas fa-wrench"></i>
+              </div>
+              <h4>Besi</h4>
+              <div class="waste-examples">
+                <i class="fas fa-check-circle text-success"></i> Paku & Mur<br>
+                <i class="fas fa-check-circle text-success"></i> Besi Bekas<br>
+                <i class="fas fa-check-circle text-success"></i> Komponen Logam<br>
+                <i class="fas fa-check-circle text-success"></i> Kawat Besi
+              </div>
+            </div>
+          </div>
+
+          <!-- Electronic -->
+          <div class="col-md-6 col-lg-4 mb-4 slide-in-right">
+            <div class="waste-type-card">
+              <div class="waste-icon">
+                <i class="fas fa-laptop"></i>
+              </div>
+              <h4>Elektronik</h4>
+              <div class="waste-examples">
+                <i class="fas fa-check-circle text-success"></i> Handphone Bekas<br>
+                <i class="fas fa-check-circle text-success"></i> Komponen Elektronik<br>
+                <i class="fas fa-check-circle text-success"></i> Kabel & Charger<br>
+                <i class="fas fa-exclamation-circle text-warning"></i> Sesuai ketentuan bank sampah
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+      <div class="container">
+        <h2 class="section-title fade-in">Manfaat Bank Sampah</h2>
+        <p class="section-subtitle fade-in">
+          Keuntungan yang Anda dapatkan dengan bergabung di bank sampah
+        </p>
+
+        <div class="row mt-4">
+          <div class="col-lg-6">
+            <div class="benefit-item slide-in-left">
+              <div class="benefit-icon">
+                <i class="fas fa-piggy-bank"></i>
+              </div>
+              <div class="benefit-content">
+                <h4>Tambahan Penghasilan</h4>
+                <p>
+                  Sampah yang biasanya dibuang bisa menjadi sumber penghasilan tambahan. 
+                  Tabungan dari sampah bisa diambil kapan saja untuk kebutuhan keluarga.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="benefit-item slide-in-right">
+              <div class="benefit-icon">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <div class="benefit-content">
+                <h4>Lingkungan Lebih Bersih</h4>
+                <p>
+                  Mengurangi volume sampah yang masuk ke TPA. Membantu mengurangi pencemaran 
+                  lingkungan dan menciptakan lingkungan yang lebih sehat.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="benefit-item slide-in-left">
+              <div class="benefit-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="benefit-content">
+                <h4>Membangun Komunitas</h4>
+                <p>
+                  Bergabung dengan komunitas peduli lingkungan. Berbagi pengetahuan dan 
+                  pengalaman dalam pengelolaan sampah berkelanjutan.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="benefit-item slide-in-right">
+              <div class="benefit-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="benefit-content">
+                <h4>Edukasi Keluarga</h4>
+                <p>
+                  Mengajarkan keluarga pentingnya memilah sampah. Menanamkan kebiasaan 
+                  baik peduli lingkungan sejak dini kepada anak-anak.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="benefit-item slide-in-left">
+              <div class="benefit-icon">
+                <i class="fas fa-recycle"></i>
+              </div>
+              <div class="benefit-content">
+                <h4>Mendukung Daur Ulang</h4>
+                <p>
+                  Sampah yang disetor akan didaur ulang menjadi produk baru. Berkontribusi 
+                  dalam ekonomi sirkular dan pengurangan limbah.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="benefit-item slide-in-right">
+              <div class="benefit-icon">
+                <i class="fas fa-globe-asia"></i>
+              </div>
+              <div class="benefit-content">
+                <h4>Selamatkan Bumi</h4>
+                <p>
+                  Mengurangi emisi gas rumah kaca dari pembakaran sampah. Ikut berperan 
+                  dalam menjaga kelestarian bumi untuk generasi mendatang.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+      <div class="container">
+        <h2 class="section-title fade-in">Fitur Analisis Sistem</h2>
+        <p class="section-subtitle fade-in">
+          Tiga Dimensi Analisis untuk Evaluasi Komprehensif Bank Sampah
+        </p>
+        <div class="row mt-5">
+          <div class="col-md-4 fade-in">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-star"></i>
+              </div>
+              <h3>Indeks Kesiapan Layanan</h3>
+              <p>
+                Mengukur tingkat kelengkapan layanan bank sampah berdasarkan
+                variasi jenis sampah yang dapat diterima. Identifikasi bank
+                sampah dengan kesiapan layanan terbaik untuk kebutuhan spesifik.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 fade-in">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <h3>Efektivitas Nasabah</h3>
+              <p>
+                Visualisasi produktivitas bank sampah melalui analisis volume
+                sampah per anggota. Evaluasi efisiensi operasional dan tingkat
+                partisipasi masyarakat dalam pengelolaan sampah.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 fade-in">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <h3>Zona Jangkauan</h3>
+              <p>
+                Analisis radius layanan setiap bank sampah dan identifikasi area
+                blank spot yang belum terlayani. Temukan lokasi strategis untuk
+                pengembangan bank sampah baru.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="kontak">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 footer-section">
+            <h5><i class="fas fa-recycle"></i> GIS Bank Sampah</h5>
+            <p>
+              Sistem Informasi Geografis untuk pemetaan dan analisis bank sampah 
+              di wilayah Kota Pekanbaru.
+            </p>
+          </div>
+          <div class="col-md-4 footer-section">
+            <h5><i class="fas fa-link"></i> Menu Cepat</h5>
+            <p>
+              <a href="#tentang">Tentang Sistem</a><br>
+              <a href="#edukasi">Edukasi</a><br>
+              <a href="map.html">Peta Interaktif</a><br>
+              <a href="data.html">Data Directory</a>
+            </p>
+          </div>
+          <div class="col-md-4 footer-section">
+            <h5><i class="fas fa-envelope"></i> Kontak</h5>
+            <p>
+              <i class="fas fa-envelope"></i> gisbanksampath@university.ac.id<br>
+              <i class="fas fa-phone"></i> +62 812-3456-7890<br>
+              <i class="fas fa-map-marker-alt"></i> Pekanbaru, Riau
+            </p>
+          </div>
+        </div>
+        
+        <div class="footer-divider"></div>
+        
+        <div class="footer-bottom">
+          <p>&copy; design by ditt .</p>
+          <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8">
+            Dibuat dengan <i class="fas fa-heart" style="color: #ff6b6b;"></i> pria yang baik hati tidak sombong
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Smooth scrolling untuk anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Scroll animation untuk fade-in elements
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all animation elements
+      document.querySelectorAll(".fade-in, .slide-in-left, .slide-in-right").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Navbar background change on scroll
+      window.addEventListener("scroll", () => {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+          navbar.style.boxShadow = "0 4px 20px rgba(0,0,0,0.2)";
+        } else {
+          navbar.style.boxShadow = "0 2px 10px rgba(0,0,0,0.1)";
+        }
+      });
+
+      // Add hover effect to education cards
+      document.querySelectorAll('.edu-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.zIndex = '10';
+        });
+        card.addEventListener('mouseleave', function() {
+          this.style.zIndex = '1';
+        });
+      });
+
+      // Active navbar link on scroll
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+      function setActiveNavLink() {
+        let current = '';
+        const scrollPosition = window.scrollY + 100; // offset untuk navbar
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        // Remove active class from all links
+        navLinks.forEach((link) => {
+          link.classList.remove('active');
+          
+          // Add active class to current section link
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+
+        // Special case for home section at the top
+        if (window.scrollY < 100) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          const homeLink = document.querySelector('.navbar-nav .nav-link[href="#home"]');
+          if (homeLink) homeLink.classList.add('active');
+        }
+      }
+
+      // Run on scroll
+      window.addEventListener('scroll', setActiveNavLink);
+      
+      // Run on page load
+      window.addEventListener('load', setActiveNavLink);
+    </script>
+  </body>
+</html>

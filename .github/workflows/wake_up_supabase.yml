@@ -1,0 +1,17 @@
+name: Wake Up Supabase
+
+on:
+  schedule:
+    # Jalan setiap hari jam 00:00 UTC (Biar dianggap aktif tiap hari)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Biar bisa di-run manual kalau mau ngetes
+
+jobs:
+  ping_database:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase Database
+        run: |
+          curl -X GET "${{ secrets.SUPABASE_URL }}/rest/v1/articles?select=count" \
+          -H "apikey: ${{ secrets.SUPABASE_KEY }}" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_KEY }}"
