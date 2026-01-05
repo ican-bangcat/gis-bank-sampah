@@ -64,7 +64,7 @@ async function loadData() {
       Volume_Sampah_kg_per_minggu: parseFloat(
         item["Volume Sampah (per minggu/kg)"] || item.volume || 0
       ),
-      Jumlah_Anggota: parseInt(item.Jumlah_Anggota || 0),
+      Jumlah_Anggota: parseInt(item["Jumlah Anggota"] || item.Jumlah_Anggota || 0),
 
       // ✅ PERBAIKAN: Ambil langsung sesuai nama kolom
       latitude: parseFloat(item.latitude || 0), // 0.58... ✅
