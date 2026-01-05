@@ -1,15 +1,19 @@
 import { defineConfig } from 'vite'
+import { resolve } from 'path'
 
 export default defineConfig({
-  // PENTING: Ganti nama repo ini sesuai dengan nama repository GitHub kamu
-  // Kalau nama repo kamu 'gis-bank-sampah', biarkan seperti ini.
-  base: '/gis-bank-sampah/', 
+  // Nama repo GitHub kamu
+  base: '/gis-bank-sampah/',
   
   build: {
-    // Ini fitur lama kamu (tetap kita simpan)
-    sourcemap: true,
-
-    // Tambahan biar terminal tidak bawel soal ukuran file
     chunkSizeWarningLimit: 1600,
+    // Konfigurasi Multi-Page App
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        map: resolve(__dirname, 'map.html'),
+        data: resolve(__dirname, 'data.html'),
+      },
+    },
   },
 })
