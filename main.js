@@ -151,7 +151,7 @@ async function loadBankSampahFromSupabase() {
           Volume_Sampah_kg_per_minggu: parseFloat(
             item["Volume Sampah (per minggu/kg)"] || item.volume || 0
           ),
-          Jumlah_Anggota: parseInt(item.Jumlah_Anggota || 0),
+          Jumlah_Anggota: parseInt(item.Jumlah_Anggota || 0 || item["Jumlah Anggota"]),
         });
         return feature;
       })
@@ -602,41 +602,34 @@ if (pointCheckbox) {
 // =====================================================
 // ANALYSIS LAYER CONTROLS
 // =====================================================
+// =====================================================
+// ANALYSIS LAYER CONTROLS
+// =====================================================
 
-function hideAllAnalysisLayers() {
-  layerDiversifikasi.setVisible(false);
-  layerProduktivitas.setVisible(false);
-  layerZonaJangkauan.setVisible(false);
-  layerTitikZona.setVisible(false);
+// CATATAN: Fungsi hideAllAnalysisLayers() dihapus agar layer bisa jalan barengan.
 
-  document.getElementById("filter-diversifikasi").style.display = "none";
-  document.getElementById("filter-produktivitas").style.display = "none";
-  document.getElementById("filter-zona").style.display = "none";
-
-  document
-    .querySelectorAll(".analysis-layer")
-    .forEach((el) => el.classList.remove("active"));
-}
-
+// --- 1. KONTROL LAYER DIVERSIFIKASI ---
 const layer1Checkbox = document.getElementById("layer-diversifikasi");
 const filterDiversifikasi = document.getElementById("filter-diversifikasi");
+const layer1Container = document.getElementById("layer1-container"); // Pastikan ID ini ada di HTML wrapper checkbox
 
 if (layer1Checkbox) {
   layer1Checkbox.addEventListener("change", function () {
+    // Aktifkan/Matikan layer sesuai status checkbox (true/false)
+    layerDiversifikasi.setVisible(this.checked);
+
+    // Tampilkan/Sembunyikan menu filter di bawahnya
     if (this.checked) {
-      hideAllAnalysisLayers();
-      this.checked = true;
-      layerDiversifikasi.setVisible(true);
       filterDiversifikasi.style.display = "block";
-      document.getElementById("layer1-container").classList.add("active");
+      if (layer1Container) layer1Container.classList.add("active");
     } else {
-      layerDiversifikasi.setVisible(false);
       filterDiversifikasi.style.display = "none";
-      document.getElementById("layer1-container").classList.remove("active");
+      if (layer1Container) layer1Container.classList.remove("active");
     }
   });
 }
 
+// Logic Filter Checkbox (Kertas, Plastik, dll) - TETAP SAMA
 ["Kertas", "Plastik", "Besi", "Kaca", "Logam"].forEach((jenis) => {
   const checkbox = document.getElementById(`filter-${jenis.toLowerCase()}`);
   if (checkbox) {
@@ -647,25 +640,28 @@ if (layer1Checkbox) {
   }
 });
 
+// --- 2. KONTROL LAYER PRODUKTIVITAS ---
 const layer2Checkbox = document.getElementById("layer-produktivitas");
 const filterProduktivitasEl = document.getElementById("filter-produktivitas");
+const layer2Container = document.getElementById("layer2-container");
 
 if (layer2Checkbox) {
   layer2Checkbox.addEventListener("change", function () {
+    // Aktifkan/Matikan layer
+    layerProduktivitas.setVisible(this.checked);
+
+    // Tampilkan/Sembunyikan menu filter
     if (this.checked) {
-      hideAllAnalysisLayers();
-      this.checked = true;
-      layerProduktivitas.setVisible(true);
       filterProduktivitasEl.style.display = "block";
-      document.getElementById("layer2-container").classList.add("active");
+      if (layer2Container) layer2Container.classList.add("active");
     } else {
-      layerProduktivitas.setVisible(false);
       filterProduktivitasEl.style.display = "none";
-      document.getElementById("layer2-container").classList.remove("active");
+      if (layer2Container) layer2Container.classList.remove("active");
     }
   });
 }
 
+// Logic Slider Volume - TETAP SAMA
 const volumeSlider = document.getElementById("volume-slider");
 if (volumeSlider) {
   volumeSlider.addEventListener("input", function () {
@@ -677,27 +673,29 @@ if (volumeSlider) {
   });
 }
 
+// --- 3. KONTROL LAYER ZONA JANGKAUAN ---
 const layer3Checkbox = document.getElementById("layer-zona");
 const filterZona = document.getElementById("filter-zona");
+const layer3Container = document.getElementById("layer3-container");
 
 if (layer3Checkbox) {
   layer3Checkbox.addEventListener("change", function () {
+    // Aktifkan/Matikan layer (Zona ini punya 2 layer: lingkaran & titik pusat)
+    layerZonaJangkauan.setVisible(this.checked);
+    layerTitikZona.setVisible(this.checked);
+
+    // Tampilkan/Sembunyikan menu filter
     if (this.checked) {
-      hideAllAnalysisLayers();
-      this.checked = true;
-      layerZonaJangkauan.setVisible(true);
-      layerTitikZona.setVisible(true);
       filterZona.style.display = "block";
-      document.getElementById("layer3-container").classList.add("active");
+      if (layer3Container) layer3Container.classList.add("active");
     } else {
-      layerZonaJangkauan.setVisible(false);
-      layerTitikZona.setVisible(false);
       filterZona.style.display = "none";
-      document.getElementById("layer3-container").classList.remove("active");
+      if (layer3Container) layer3Container.classList.remove("active");
     }
   });
 }
 
+// Logic Slider Radius - TETAP SAMA
 const radiusSlider = document.getElementById("radius-slider");
 if (radiusSlider) {
   radiusSlider.addEventListener("input", function () {
@@ -706,7 +704,6 @@ if (radiusSlider) {
     generateZonaJangkauan();
   });
 }
-
 // =====================================================
 // HOVER EFFECT & ZOOM CONTROLS
 // =====================================================
