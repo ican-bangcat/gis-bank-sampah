@@ -10,8 +10,16 @@ jobs:
   ping_database:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping keep_alive Table
+      - name: Force Database Write (Update)
         run: |
-          curl -f -X GET "${{ secrets.SUPABASE_URL }}/rest/v1/keep_alive?select=*" \
+          # Ambil jam sekarang buat bukti update
+          TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+          
+          # Lakukan PATCH (Update) ke baris id=1
+          # Kita ubah kolom 'message' dengan waktu terbaru
+          curl -f -X PATCH "${{ secrets.SUPABASE_URL }}/rest/v1/keep_alive?id=eq.1" \
           -H "apikey: ${{ secrets.SUPABASE_KEY }}" \
-          -H "Authorization: Bearer ${{ secrets.SUPABASE_KEY }}"
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_KEY }}" \
+          -H "Content-Type: application/json" \
+          -H "Prefer: return=representation" \
+          -d "{\"message\": \"Keep Awake! $TIMESTAMP\"}"
