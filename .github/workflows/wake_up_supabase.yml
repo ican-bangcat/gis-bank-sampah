@@ -2,9 +2,9 @@ name: Wake Up Supabase
 
 on:
   schedule:
-    # Jalan setiap hari jam 00:00 UTC
+    # Jalan setiap hari jam 00:00 UTC (07:00 WIB)
     - cron: '0 0 * * *'
-  workflow_dispatch:
+  workflow_dispatch: # Tombol manual buat ngetes
 
 jobs:
   ping_database:
@@ -12,11 +12,11 @@ jobs:
     steps:
       - name: Force Database Write (Update)
         run: |
-          # Ambil jam sekarang buat bukti update
+          # 1. Ambil jam sekarang
           TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
           
-          # Lakukan PATCH (Update) ke baris id=1
-          # Kita ubah kolom 'message' dengan waktu terbaru
+          # 2. Lakukan PATCH (Update) ke baris id=1
+          # Ini memaksa database menulis ke disk (Write Activity)
           curl -f -X PATCH "${{ secrets.SUPABASE_URL }}/rest/v1/keep_alive?id=eq.1" \
           -H "apikey: ${{ secrets.SUPABASE_KEY }}" \
           -H "Authorization: Bearer ${{ secrets.SUPABASE_KEY }}" \
